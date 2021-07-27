@@ -6,4 +6,90 @@
     android:orientation="vertical"
     tools:context=".ui.activities.MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginBottom="@dimen/spacing_small_8"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_baseline_call_24" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_big_72"
+            android:layout_marginStart="@dimen/spacing_medium_32"
+            android:layout_marginEnd="@dimen/spacing_normal_16"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Мобильный телефон"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_baseline_phone_in_talk_24" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/grey_light"
+        android:layout_marginStart="@dimen/spacing_larger_72"
+        android:layout_height="@dimen/line_size_2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/size_small_24"
+            android:layout_height="@dimen/size_small_24"
+            android:layout_marginStart="@dimen/size_small_24"
+            android:layout_marginTop="@dimen/size_small_24"
+            android:src="@drawable/ic_baseline_call_24" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_big_72"
+            android:layout_marginStart="@dimen/spacing_medium_32"
+            android:layout_marginEnd="@dimen/spacing_normal_16"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Мобильный телефон" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/size_small_24"
+            android:layout_height="@dimen/size_small_24"
+            android:layout_marginStart="@dimen/size_small_24"
+            android:layout_marginTop="@dimen/size_small_24"
+            android:src="@drawable/ic_baseline_phone_in_talk_24" />
+
+    </LinearLayout>
+
 </LinearLayout>

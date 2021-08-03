@@ -8,4 +8,7 @@
     <dimen name="spacing_small_8">8dp</dimen>
     <dimen name="line_size_2">2dp</dimen>
     <dimen name="spacing_larger_72">72dp</dimen>
+    <dimen name="size_small_12">12sp</dimen>
+    <dimen name="big_large_size_96">96dp</dimen>
+    <dimen name="size_normal_16">16sp</dimen>
 </resources>

@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Dev Intensive 2</string>
+    <string name="app_name">Лук\'янчук Олександр</string>
+    <string name="about_me">I know the basics of Java, Kotlin loops, collections, worked with streams, exceptions, the correct construction of classes in OOP (5 months of study, 5 consolidation of skills in the android studio)
+Ability to work with XML markup, elements, templates
+Participated in the development of fitness app for pregnant women FitMama
+Worked with MVP architecture
+Used libraries Volley, Glide, Picasso, GeoFire, GDX, Room, Dagger, Retrofit and the main library. (I started studying LifeData, then Coroutines, Crashlytics)
+Perfectly mastered the development of a messenger application similar to Viber, WhatsApp, Telegram with a Firebase database
+I created my own database (data of the sports club). Familiar with the basics of SQL, JSON
+Created the Music player application, the banner application, the simplest animations, video additions, various ways of storing data
+Wrote a clone of the Flappy bird game, based on the GDX engine
+Worked with Google Location \ Maps API
+Finished an app with an Uber clone, using Firebase, for authorization and location storage
+Studied the basics of C #, OOP, .Net Core basics. He wrote the simplest code like the Fibonacci number, factorial, parsing Roman numbers, the game "Tic-Tac-Toe", "Hangman"</string>
 </resources>

@@ -10,7 +10,7 @@ import com.softdesign.devintensive2.utils.ConstantManager
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG: String = ConstantManager.TAG_PREFIX + "Main Activity"
+    private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
 
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

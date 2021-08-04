@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
+import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.databinding.ActivityMainBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(){
 
     private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
 
@@ -20,10 +22,10 @@ class MainActivity : BaseActivity() {
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         Log.d(TAG, "onCreate")
 
 //        mCallImg = findViewById(R.id.iv_call)
@@ -35,10 +37,13 @@ class MainActivity : BaseActivity() {
         }
 
         if (savedInstanceState != null) {
+            showSnackBar("активити запускаеться впервые")
             //активити запускаеться впервые
         } else {
+            showSnackBar("активность уже создавалась")
             //активность уже создавалась
         }
+
     }
 
     override fun onStart() {
@@ -80,5 +85,10 @@ class MainActivity : BaseActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+    }
+
+    fun showSnackBar(message: String) {
+        Snackbar.make(binding.coordinatorLayoutMain, message, LENGTH_LONG)
+            .show()
     }
 }

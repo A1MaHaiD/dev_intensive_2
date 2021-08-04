@@ -11,4 +11,7 @@
     <dimen name="size_small_12">12sp</dimen>
     <dimen name="big_large_size_96">96dp</dimen>
     <dimen name="size_normal_16">16sp</dimen>
+    <dimen name="spacing_large_112">112dp</dimen>
+    <dimen name="size_medium_56">56dp</dimen>
+    <dimen name="spacing_action_bar_80">80dp</dimen>
 </resources>

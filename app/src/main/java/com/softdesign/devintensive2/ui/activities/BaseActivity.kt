@@ -7,17 +7,19 @@ import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.util.ObjectsCompat.toString
 import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.utils.ConstantManager
-import java.lang.Exception
+import java.util.Arrays.toString
 import java.util.logging.Handler
+import kotlin.Exception
 
 open class BaseActivity : AppCompatActivity() {
     private val TAG: String = ConstantManager.TAG_PREFIX + "BaseActivity"
     lateinit var mProgressDialog:AlertDialog
     fun showProgress() {
-        mProgressDialog.show()
         mProgressDialog.setContentView(R.layout.progress_splash)
+        mProgressDialog.show()
     }
 
     fun hideProgress() {

@@ -4,20 +4,41 @@ package com.softdesign.devintensive2.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.databinding.ActivityMainBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
+
+//    lateinit var mCallImg: ImageView
 
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val view = binding.root
+        setContentView(view)
         Log.d(TAG, "onCreate")
+
+//        mCallImg = findViewById(R.id.iv_call)
+//        mCallImg.setOnClickListener(this)
+
+        binding.ivCall.setOnClickListener {
+//            showProgress()
+//            runWithDelay()
+        }
+
+        if (savedInstanceState != null) {
+            //активити запускаеться впервые
+        } else {
+            //активность уже создавалась
+        }
     }
 
     override fun onStart() {
@@ -43,5 +64,21 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "onDestroy")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart")
+    }
+
+//    fun runWithDelay() {
+//        val handler = android.os.Handler()
+//        handler.postDelayed({ //TODO: Выполнить с задержкой
+//            hideProgress()
+//        }, 5000)
+//    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 }

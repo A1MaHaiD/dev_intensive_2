@@ -1,16 +1,32 @@
 package com.softdesign.devintensive2.ui.activities
 
+import android.app.ProgressDialog
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.softdesign.devintensive2.utils.ConstantManager
+import java.lang.Exception
 
-class BaseActivity:AppCompatActivity() {
+class BaseActivity : AppCompatActivity() {
     private val TAG: String = ConstantManager.TAG_PREFIX + "BaseActivity"
+    protected lateinit var mProgressDialog: ProgressDialog
+    fun showProgress() {
+        if (mProgressDialog == null){
+            mProgressDialog = ProgressDialog(this)
+        }
+    }
 
-    fun showProgress(){
+    fun hideProgress() {
 
     }
 
-    fun hideProgress(){
+    fun showError(message: String, error: Exception) {
+        showToast(message)
+        //@toString() maybe wrong
+        Log.e(TAG, error.toString())
+    }
 
+    fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG)
     }
 }

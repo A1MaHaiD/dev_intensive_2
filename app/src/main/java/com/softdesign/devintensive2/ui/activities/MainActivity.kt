@@ -4,11 +4,13 @@ package com.softdesign.devintensive2.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
@@ -16,7 +18,7 @@ import com.softdesign.devintensive2.databinding.ActivityMainBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 
 
-class MainActivity : BaseActivity(){
+class MainActivity : BaseActivity() {
 
     private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
 
@@ -39,6 +41,7 @@ class MainActivity : BaseActivity(){
 //            runWithDelay()
         }
         setupToolbar()
+        setupDrawable()
 
         if (savedInstanceState != null) {
             showSnackBar("активити запускаеться впервые")
@@ -96,18 +99,28 @@ class MainActivity : BaseActivity(){
             .show()
     }
 
-    private fun setupToolbar(){
+    private fun setupToolbar() {
         setSupportActionBar(binding.tbMain)
         val actionBar: ActionBar? = supportActionBar
-        if (actionBar != null){
+        if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==android.R.id.home)
+        if (item.itemId == android.R.id.home)
             binding.dlMain.openDrawer(GravityCompat.START)
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setupDrawable() {
+        binding.nvMain.setNavigationItemSelectedListener(
+            NavigationView.OnNavigationItemSelectedListener() {
+                showSnackBar(it.title.toString())
+                it.setChecked(true)
+                binding.dlMain.closeDrawer(GravityCompat.START)
+                return@OnNavigationItemSelectedListener false
+            })
     }
 }

@@ -16,6 +16,7 @@
         <com.google.android.material.appbar.AppBarLayout
             style="@style/Theme.DevIntensive2.AppBarOverlay"
             android:layout_width="match_parent"
+            android:background="@color/purple_500"
             android:layout_height="wrap_content">
             
             <androidx.appcompat.widget.Toolbar
@@ -28,7 +29,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_marginTop="?attr/actionBarSize"

@@ -15,4 +15,5 @@
     <dimen name="size_medium_56">56dp</dimen>
     <dimen name="spacing_action_bar_80">80dp</dimen>
     <dimen name="profile_image_size">256dp</dimen>
+    <dimen name="fab_right_spice_16">16dp</dimen>
 </resources>

@@ -19,9 +19,8 @@ class MainActivity : BaseActivity() {
     private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var mUserInfo: ArrayList<EditText>
+    private lateinit var mUserInfo: List<EditText>
     private var mCurrentEditMode: Int = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +30,11 @@ class MainActivity : BaseActivity() {
         Log.d(TAG, "onCreate")
 
         mUserInfoInit()
-        onClickEditor()
-        onClickCall()
         setupToolbar()
         setupDrawable()
         onClickFloatButton()
+        onClickEditor()
+        onClickCall()
 
         if (savedInstanceState != null) {
             showSnackBar("активити запускаеться впервые")
@@ -47,6 +46,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun onClickEditor() {
+        Log.e(TAG, "onClickEditor")
         binding.fabMain.setOnClickListener {
             mCurrentEditMode = if (mCurrentEditMode == 0) {
                 changeEditMode(1)
@@ -59,11 +59,13 @@ class MainActivity : BaseActivity() {
     }
 
     private fun mUserInfoInit() {
-        mUserInfo.add(binding.etPhone)
-        mUserInfo.add(binding.etEmail)
-        mUserInfo.add(binding.etFacebook)
-        mUserInfo.add(binding.etGithub)
-        mUserInfo.add(binding.etAbout)
+        mUserInfo = ArrayList()
+        (mUserInfo as ArrayList<EditText>).add(binding.etPhone)
+        (mUserInfo as ArrayList<EditText>).add(binding.etEmail)
+        (mUserInfo as ArrayList<EditText>).add(binding.etFacebook)
+        (mUserInfo as ArrayList<EditText>).add(binding.etGithub)
+        (mUserInfo as ArrayList<EditText>).add(binding.etAbout)
+        Log.e(TAG, "mUserInfoInit")
     }
 
     private fun onClickCall() {
@@ -115,11 +117,13 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showSnackBar(message: String) {
+        Log.e(TAG, "showSnackBar")
         Snackbar.make(binding.coordinatorLayoutMain, message, LENGTH_LONG)
             .show()
     }
 
     private fun setupToolbar() {
+        Log.e(TAG, "setupToolbar")
         setSupportActionBar(binding.tbMain)
         val actionBar: ActionBar? = supportActionBar
         if (actionBar != null) {
@@ -145,6 +149,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun onClickFloatButton() {
+        Log.e(TAG, "onClickFloatButton")
         binding.fabMain.setOnClickListener {
             showSnackBar("click")
         }
@@ -155,13 +160,16 @@ class MainActivity : BaseActivity() {
      *      @param mode якщо 1 режим редагування, якщо 0 режим перегляду ()
      */
     private fun changeEditMode(mode: Int) {
+        Log.e(TAG, "changeEditMode")
         if (mode == 1) {
+            Log.e(TAG, "changeEditMode_1")
             for (userValue: EditText in mUserInfo) {
                 userValue.isEnabled = true
                 userValue.isFocusable = true
                 userValue.isFocusableInTouchMode = true
             }
         } else {
+            Log.e(TAG, "changeEditMode_0")
             for (userValue: EditText in mUserInfo) {
                 userValue.isEnabled = false
                 userValue.isFocusable = false

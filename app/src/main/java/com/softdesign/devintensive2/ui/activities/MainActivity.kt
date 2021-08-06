@@ -1,5 +1,6 @@
 package com.softdesign.devintensive2.ui.activities
 
+import android.graphics.Insets.add
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -10,6 +11,8 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
+import com.softdesign.devintensive2.data.managers.DataManager
+import com.softdesign.devintensive2.data.managers.PreferencesManagers
 import com.softdesign.devintensive2.databinding.ActivityMainBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 
@@ -17,8 +20,9 @@ class MainActivity : BaseActivity() {
 
     private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
 
+    private lateinit var mDataManager: DataManager
     private lateinit var binding: ActivityMainBinding
-    private lateinit var mUserInfo: List<EditText>
+    private lateinit var mUserInfoViews: List<EditText>
     private var mCurrentEditMode: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +32,7 @@ class MainActivity : BaseActivity() {
         setContentView(view)
         Log.d(TAG, "onCreate")
 
+        mDataManager = DataManager.getInstance()
         mUserInfoInit()
         setupToolbar()
         setupDrawable()
@@ -60,12 +65,12 @@ class MainActivity : BaseActivity() {
     }
 
     private fun mUserInfoInit() {
-        mUserInfo = ArrayList()
-        (mUserInfo as ArrayList<EditText>).add(binding.etPhone)
-        (mUserInfo as ArrayList<EditText>).add(binding.etEmail)
-        (mUserInfo as ArrayList<EditText>).add(binding.etFacebook)
-        (mUserInfo as ArrayList<EditText>).add(binding.etGithub)
-        (mUserInfo as ArrayList<EditText>).add(binding.etAbout)
+        mUserInfoViews = ArrayList()
+        (mUserInfoViews as ArrayList<EditText>).add(binding.etPhone)
+        (mUserInfoViews as ArrayList<EditText>).add(binding.etEmail)
+        (mUserInfoViews as ArrayList<EditText>).add(binding.etFacebook)
+        (mUserInfoViews as ArrayList<EditText>).add(binding.etGithub)
+        (mUserInfoViews as ArrayList<EditText>).add(binding.etAbout)
         Log.e(TAG, "mUserInfoInit")
     }
 
@@ -166,7 +171,7 @@ class MainActivity : BaseActivity() {
         if (mode == 1) {
             binding.fabMain.setImageResource(R.drawable.ic_baseline_done_24)
             Log.e(TAG, "changeEditMode_1")
-            for (userValue: EditText in mUserInfo) {
+            for (userValue: EditText in mUserInfoViews) {
                 userValue.isEnabled = true
                 userValue.isFocusable = true
                 userValue.isFocusableInTouchMode = true
@@ -174,7 +179,7 @@ class MainActivity : BaseActivity() {
         } else {
             binding.fabMain.setImageResource(R.drawable.ic_baseline_create_24)
             Log.e(TAG, "changeEditMode_0")
-            for (userValue: EditText in mUserInfo) {
+            for (userValue: EditText in mUserInfoViews) {
                 userValue.isEnabled = false
                 userValue.isFocusable = false
                 userValue.isFocusableInTouchMode = false
@@ -183,10 +188,19 @@ class MainActivity : BaseActivity() {
     }
 
     private fun loadUserInfoValue() {
-
+        val userData:List<String> = mDataManager.preferencesManagers.loadUserProfileData()
+        for (i in userData.indices) {
+            mUserInfoViews[i].setText(userData[i])
+        }
     }
 
     private fun saveUserInfoValue() {
-
+        val userData:List<String> = ArrayList()
+        for (userFieldView:EditText in mUserInfoViews) {
+          //@don't work ArrayList<>() .add()
+        }
+        mDataManager
     }
 }
+
+

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
@@ -17,8 +18,10 @@ class MainActivity : BaseActivity() {
 
     private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
 
-    lateinit var binding: ActivityMainBinding
-    lateinit var mUserInfo:List<View>
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var mUserInfo: ArrayList<EditText>
+    private var mCurrentEditMode: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,8 @@ class MainActivity : BaseActivity() {
         setContentView(view)
         Log.d(TAG, "onCreate")
 
+        mUserInfoInit()
+        onClickEditor()
         onClickCall()
         setupToolbar()
         setupDrawable()
@@ -39,6 +44,26 @@ class MainActivity : BaseActivity() {
             showSnackBar("активность уже создавалась")
             //активность уже создавалась
         }
+    }
+
+    private fun onClickEditor() {
+        binding.fabMain.setOnClickListener {
+            mCurrentEditMode = if (mCurrentEditMode == 0) {
+                changeEditMode(1)
+                1
+            } else {
+                changeEditMode(0)
+                0
+            }
+        }
+    }
+
+    private fun mUserInfoInit() {
+        mUserInfo.add(binding.etPhone)
+        mUserInfo.add(binding.etEmail)
+        mUserInfo.add(binding.etFacebook)
+        mUserInfo.add(binding.etGithub)
+        mUserInfo.add(binding.etAbout)
     }
 
     private fun onClickCall() {
@@ -119,9 +144,37 @@ class MainActivity : BaseActivity() {
             })
     }
 
-    private fun onClickFloatButton(){
-       binding.fabMain.setOnClickListener {
-           showSnackBar("click")
-       }
+    private fun onClickFloatButton() {
+        binding.fabMain.setOnClickListener {
+            showSnackBar("click")
+        }
+    }
+
+    /**
+     *      переключаємо режим редагування (switch mode edition)
+     *      @param mode якщо 1 режим редагування, якщо 0 режим перегляду ()
+     */
+    private fun changeEditMode(mode: Int) {
+        if (mode == 1) {
+            for (userValue: EditText in mUserInfo) {
+                userValue.isEnabled = true
+                userValue.isFocusable = true
+                userValue.isFocusableInTouchMode = true
+            }
+        } else {
+            for (userValue: EditText in mUserInfo) {
+                userValue.isEnabled = false
+                userValue.isFocusable = false
+                userValue.isFocusableInTouchMode = true
+            }
+        }
+    }
+
+    private fun loadUserInfoValue() {
+
+    }
+
+    private fun saveUserInfoValue() {
+
     }
 }

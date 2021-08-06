@@ -10,6 +10,8 @@
 
     <!-- new colors -->
     <color name="grey">#5D5D5D</color>
+    <color name="grey_background">#454545</color>
     <color name="grey_light">#9C9C9C</color>
+
     <color name="transparent">#00000000</color>
 </resources>

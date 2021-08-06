@@ -11,7 +11,6 @@ public class DevIntensive2Application extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         sSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 

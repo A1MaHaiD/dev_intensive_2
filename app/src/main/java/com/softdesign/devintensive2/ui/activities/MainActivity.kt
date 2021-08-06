@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.databinding.ActivityMainBinding
+import com.softdesign.devintensive2.databinding.UserLayoutContentBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 
 class MainActivity : BaseActivity() {
@@ -20,16 +21,19 @@ class MainActivity : BaseActivity() {
 
     private lateinit var mDataManager: DataManager
     private lateinit var binding: ActivityMainBinding
+    private lateinit var bindingChild: UserLayoutContentBinding
     private lateinit var mUserInfoViews: MutableList<EditText>
     private var mCurrentEditMode: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        bindingChild = UserLayoutContentBinding.inflate(layoutInflater)
+        val viewChild = bindingChild.root
+        setContentView(viewChild)
         val view = binding.root
         setContentView(view)
         Log.d(TAG, "onCreate")
-
 
         mDataManager = DataManager.getInstance()
         mUserInfoInit()
@@ -53,7 +57,6 @@ class MainActivity : BaseActivity() {
         }
     }
 
-
     private fun onClickEditor() {
         Log.e(TAG, "onClickEditor")
         binding.fabMain.setOnClickListener {
@@ -69,16 +72,16 @@ class MainActivity : BaseActivity() {
 
     private fun mUserInfoInit() {
         mUserInfoViews = ArrayList()
-        mUserInfoViews.add(binding.etPhone)
-        mUserInfoViews.add(binding.etEmail)
-        mUserInfoViews.add(binding.etFacebook)
-        mUserInfoViews.add(binding.etGithub)
-        mUserInfoViews.add(binding.etAbout)
+        mUserInfoViews.add(bindingChild.etPhone)
+        mUserInfoViews.add(bindingChild.etEmail)
+        mUserInfoViews.add(bindingChild.etFacebook)
+        mUserInfoViews.add(bindingChild.etGithub)
+        mUserInfoViews.add(bindingChild.etAbout)
         Log.e(TAG, "mUserInfoInit")
     }
 
     private fun onClickCall() {
-        binding.ivCall.setOnClickListener {
+        bindingChild.ivCall.setOnClickListener {
 //            showProgress()
 //            runWithDelay()
         }
@@ -167,8 +170,15 @@ class MainActivity : BaseActivity() {
     }
 
     /**
-     *      переключаємо режим редагування (switch mode edition)
-     *      @param mode якщо 1 режим редагування, якщо 0 режим перегляду ()
+     * Отримання результату з іншої Activity (фото з камери або галереї)
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+
+    /**
+     * Переключаємо режим редагування (switch mode edition)
+     * @param mode якщо 1 режим редагування, якщо 0 режим перегляду ()
      */
     private fun changeEditMode(mode: Int) {
         Log.e(TAG, "changeEditMode")
@@ -206,6 +216,21 @@ class MainActivity : BaseActivity() {
             userData.add(userFieldView.text.toString())
         }
         mDataManager.preferencesManagers.saveUserProfileData(userData)
+    }
+
+    private fun loadPhotoFromGallery(){
+
+    }
+
+    private fun loadPhotoFromCamera(){
+
+    }
+
+    private fun showProfilePlaceholder(){
+
+    }
+    private fun hideProfilePlaceholder(){
+
     }
 
 }

@@ -12,4 +12,5 @@ Wrote a clone of the Flappy bird game, based on the GDX engine
 Worked with Google Location \ Maps API
 Finished an app with an Uber clone, using Firebase, for authorization and location storage
 Studied the basics of C #, OOP, .Net Core basics. He wrote the simplest code like the Fibonacci number, factorial, parsing Roman numbers, the game "Tic-Tac-Toe", "Hangman"</string>
+    <string name="user_profile">Змінити фотографію пофілю</string>
 </resources>

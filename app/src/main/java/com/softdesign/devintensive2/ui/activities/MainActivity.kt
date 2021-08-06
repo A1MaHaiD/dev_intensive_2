@@ -3,7 +3,6 @@ package com.softdesign.devintensive2.ui.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.GravityCompat
@@ -32,14 +31,16 @@ class MainActivity : BaseActivity() {
         mUserInfoInit()
         setupToolbar()
         setupDrawable()
-        onClickFloatButton()
         onClickEditor()
         onClickCall()
+        onClickFloatButton()
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
             showSnackBar("активити запускаеться впервые")
             //активити запускаеться впервые
         } else {
+            mCurrentEditMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0)
+            changeEditMode(mCurrentEditMode)
             showSnackBar("активность уже создавалась")
             //активность уже создавалась
         }
@@ -114,6 +115,7 @@ class MainActivity : BaseActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putInt(ConstantManager.EDIT_MODE_KEY, mCurrentEditMode)
     }
 
     private fun showSnackBar(message: String) {
@@ -162,6 +164,7 @@ class MainActivity : BaseActivity() {
     private fun changeEditMode(mode: Int) {
         Log.e(TAG, "changeEditMode")
         if (mode == 1) {
+            binding.fabMain.setImageResource(R.drawable.ic_baseline_done_24)
             Log.e(TAG, "changeEditMode_1")
             for (userValue: EditText in mUserInfo) {
                 userValue.isEnabled = true
@@ -169,6 +172,7 @@ class MainActivity : BaseActivity() {
                 userValue.isFocusableInTouchMode = true
             }
         } else {
+            binding.fabMain.setImageResource(R.drawable.ic_baseline_create_24)
             Log.e(TAG, "changeEditMode_0")
             for (userValue: EditText in mUserInfo) {
                 userValue.isEnabled = false

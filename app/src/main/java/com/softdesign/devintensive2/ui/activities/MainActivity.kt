@@ -165,7 +165,7 @@ class MainActivity : BaseActivity() {
             for (userValue: EditText in mUserInfo) {
                 userValue.isEnabled = false
                 userValue.isFocusable = false
-                userValue.isFocusableInTouchMode = true
+                userValue.isFocusableInTouchMode = false
             }
         }
     }

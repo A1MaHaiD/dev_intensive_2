@@ -1,13 +1,9 @@
 package com.softdesign.devintensive2.ui.activities
 
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
@@ -17,31 +13,24 @@ import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.databinding.ActivityMainBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 
-
 class MainActivity : BaseActivity() {
 
     private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
 
-//    lateinit var mCallImg: ImageView
-
     lateinit var binding: ActivityMainBinding
+    lateinit var mUserInfo:List<View>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
         Log.d(TAG, "onCreate")
 
-//        mCallImg = findViewById(R.id.iv_call)
-//        mCallImg.setOnClickListener(this)
-
-        binding.ivCall.setOnClickListener {
-//            showProgress()
-//            runWithDelay()
-        }
+        onClickCall()
         setupToolbar()
         setupDrawable()
+        onClickFloatButton()
 
         if (savedInstanceState != null) {
             showSnackBar("активити запускаеться впервые")
@@ -50,7 +39,13 @@ class MainActivity : BaseActivity() {
             showSnackBar("активность уже создавалась")
             //активность уже создавалась
         }
+    }
 
+    private fun onClickCall() {
+        binding.ivCall.setOnClickListener {
+//            showProgress()
+//            runWithDelay()
+        }
     }
 
     override fun onStart() {
@@ -83,12 +78,12 @@ class MainActivity : BaseActivity() {
         Log.d(TAG, "onRestart")
     }
 
-//    fun runWithDelay() {
+    fun runWithDelay() {
 //        val handler = android.os.Handler()
 //        handler.postDelayed({ //TODO: Выполнить с задержкой
 //            hideProgress()
 //        }, 5000)
-//    }
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -122,5 +117,11 @@ class MainActivity : BaseActivity() {
                 binding.dlMain.closeDrawer(GravityCompat.START)
                 return@OnNavigationItemSelectedListener false
             })
+    }
+
+    private fun onClickFloatButton(){
+       binding.fabMain.setOnClickListener {
+           showSnackBar("click")
+       }
     }
 }

@@ -1,17 +1,11 @@
 package com.softdesign.devintensive2.ui.activities
 
 import android.app.AlertDialog
-import android.app.ProgressDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.util.ObjectsCompat.toString
 import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.utils.ConstantManager
-import java.util.Arrays.toString
-import java.util.logging.Handler
 import kotlin.Exception
 
 open class BaseActivity : AppCompatActivity() {

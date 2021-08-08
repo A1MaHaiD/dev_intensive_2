@@ -3,7 +3,7 @@ package com.softdesign.devintensive2.data.managers;
 public class DataManager {
     private static DataManager INSTANCE = null;
 
-    private PreferencesManagers mPreferencesManagers;
+    private final PreferencesManagers mPreferencesManagers;
 
     public DataManager(){
         this.mPreferencesManagers = new PreferencesManagers();

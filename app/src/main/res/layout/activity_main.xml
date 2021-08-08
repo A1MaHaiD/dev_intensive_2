@@ -52,7 +52,7 @@
                             android:layout_above="@+id/iv_photo_placeholder"
                             android:layout_centerHorizontal="true"
                             android:fontFamily="sans-serif-medium"
-                            android:text="@string/user_profile"
+                            android:text="@string/user_profile_title"
                             android:layout_marginBottom="@dimen/spacing_small_8"
                             android:textColor="@color/white" />
 

@@ -1,11 +1,25 @@
 package com.softdesign.devintensive2.ui.activities
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.view.View.FOCUSABLE
+import android.view.View.NOT_FOCUSABLE
 import android.widget.EditText
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.GravityCompat
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.LayoutParams
+import com.google.android.material.appbar.AppBarLayout.LayoutParams.*
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
@@ -14,6 +28,13 @@ import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.databinding.ActivityMainBinding
 import com.softdesign.devintensive2.databinding.UserLayoutContentBinding
 import com.softdesign.devintensive2.utils.ConstantManager
+import com.softdesign.devintensive2.utils.ConstantManager.*
+import java.io.File
+import java.io.IOException
+import java.net.URI
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
 
@@ -24,6 +45,8 @@ class MainActivity : BaseActivity() {
     private lateinit var bindingChild: UserLayoutContentBinding
     private lateinit var mUserInfoViews: MutableList<EditText>
     private var mCurrentEditMode: Int = 0
+    private var mAppBarParam: LayoutParams? = null
+    private var mAppBarLayout: AppBarLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +63,9 @@ class MainActivity : BaseActivity() {
         setupToolbar()
         setupDrawable()
         loadUserInfoValue()
-        onClickEditor()
-        onClickCall()
         onClickFloatButton()
+        onClickPlaceholder()
+        onClickCall()
 
         // val test:MutableList<String> = mDataManager.preferencesManagers.loadUserProfileData()
 
@@ -57,16 +80,73 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun onClickPlaceholder() {
+        binding.rlProfilePlaceholder.setOnClickListener {
+            onCreateDialog(LOAD_PROFILE_PHOTO)
+        }
+    }
+
+    override fun onCreateDialog(id: Int): Dialog? {
+        return when (id) {
+            ConstantManager.LOAD_PROFILE_CAMERA -> {
+                val selectItem = arrayOf(
+                    getString(R.string.user_profile_dialog_gallery),
+                    getString(R.string.user_profile_dialog_camera),
+                    getString(R.string.user_profile_dialog_cancel)
+                )
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle(getString(R.string.user_profile_title))
+                builder.setItems(selectItem) { dialog, choiceItem ->
+                    when (choiceItem) {
+                        0 -> {
+                            //TODO: Загрузити фото з галереї
+                            loadPhotoFromGallery()
+                            showSnackBar("Загрузити фото з галереї")
+                        }
+                        1 -> {
+                            //TODO: Загрузити фото з камери
+                            loadPhotoFromCamera()
+                            showSnackBar("Загрузити фото з камери")
+                        }
+                        2 -> {
+                            dialog.cancel()
+                            //TODO: Відміна
+                            showSnackBar("Відміна")
+                        }
+                    }
+                }
+                builder.create()
+            }
+            else -> null
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd HHmmss")
+            .format(Date())
+        val imageFileName = "JPEG_" + timeStamp + "_"
+        val storageDir = Environment
+            .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(imageFileName, ".jpg", storageDir)
+    }
+
+    private fun onClickFloatButton() {
+        binding.fabMain.setOnClickListener {
+            showSnackBar("click")
+            onClickEditor()
+        }
+    }
+
     private fun onClickEditor() {
         Log.e(TAG, "onClickEditor")
-        binding.fabMain.setOnClickListener {
-            mCurrentEditMode = if (mCurrentEditMode == 0) {
-                changeEditMode(1)
-                1
-            } else {
-                changeEditMode(0)
-                0
-            }
+        mCurrentEditMode = if (mCurrentEditMode == 0) {
+            changeEditMode(1)
+            1
+        } else {
+            changeEditMode(0)
+            0
         }
     }
 
@@ -140,6 +220,8 @@ class MainActivity : BaseActivity() {
         Log.e(TAG, "setupToolbar")
         setSupportActionBar(binding.tbMain)
         val actionBar: ActionBar? = supportActionBar
+
+        mAppBarParam = binding.ctlMain.layoutParams as LayoutParams?
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
             actionBar.setDisplayHomeAsUpEnabled(true)
@@ -156,17 +238,10 @@ class MainActivity : BaseActivity() {
         binding.nvMain.setNavigationItemSelectedListener(
             NavigationView.OnNavigationItemSelectedListener() {
                 showSnackBar(it.title.toString())
-                it.setChecked(true)
+                it.isChecked = true
                 binding.dlMain.closeDrawer(GravityCompat.START)
-                return@OnNavigationItemSelectedListener false
+                return@OnNavigationItemSelectedListener true
             })
-    }
-
-    private fun onClickFloatButton() {
-        Log.e(TAG, "onClickFloatButton")
-        binding.fabMain.setOnClickListener {
-            showSnackBar("click")
-        }
     }
 
     /**
@@ -184,19 +259,27 @@ class MainActivity : BaseActivity() {
         Log.e(TAG, "changeEditMode")
         if (mode == 1) {
             binding.fabMain.setImageResource(R.drawable.ic_baseline_done_24)
+            showSnackBar("click")
             Log.e(TAG, "changeEditMode_1")
             for (userValue: EditText in mUserInfoViews) {
                 userValue.isEnabled = true
-                userValue.isFocusable = true
+                userValue.focusable = FOCUSABLE
                 userValue.isFocusableInTouchMode = true
+                showProfilePlaceholder()
+                lockToolbar()
+                binding.ctlMain.setExpandedTitleColor(Color.TRANSPARENT)
             }
         } else {
             binding.fabMain.setImageResource(R.drawable.ic_baseline_create_24)
+            showSnackBar("click")
             Log.e(TAG, "changeEditMode_0")
             for (userValue: EditText in mUserInfoViews) {
                 userValue.isEnabled = false
-                userValue.isFocusable = false
+                userValue.focusable = NOT_FOCUSABLE
                 userValue.isFocusableInTouchMode = false
+                hideProfilePlaceholder()
+                unlockToolbar()
+                binding.ctlMain.setExpandedTitleColor(resources.getColor(R.color.white))
                 saveUserInfoValue()
             }
         }
@@ -218,21 +301,43 @@ class MainActivity : BaseActivity() {
         mDataManager.preferencesManagers.saveUserProfileData(userData)
     }
 
-    private fun loadPhotoFromGallery(){
+    private fun loadPhotoFromGallery() {
 
     }
 
-    private fun loadPhotoFromCamera(){
-
+    private fun loadPhotoFromCamera() {
+        var photoFile: File? = null
+        val takeCaptureInt = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        try {
+            photoFile = createImageFile()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            //TODO: Обробити помилку
+        }
+        if (photoFile != null){
+            //TODO: Передавати фотофайл в інтент
+            takeCaptureInt.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(photoFile))
+        }
     }
 
-    private fun showProfilePlaceholder(){
-
-    }
-    private fun hideProfilePlaceholder(){
-
+    private fun showProfilePlaceholder() {
+        binding.rlProfilePlaceholder.visibility = View.VISIBLE
     }
 
+    private fun hideProfilePlaceholder() {
+        binding.rlProfilePlaceholder.visibility = View.GONE
+    }
+
+    private fun lockToolbar() {
+        mAppBarLayout?.setExpanded(true, true)
+        mAppBarParam?.scrollFlags = 0
+        binding.ctlMain.layoutParams = mAppBarParam
+    }
+
+    private fun unlockToolbar() {
+        mAppBarParam?.scrollFlags = SCROLL_FLAG_SCROLL.or(SCROLL_FLAG_EXIT_UNTIL_COLLAPSED)
+        binding.ctlMain.layoutParams = mAppBarParam
+    }
 }
 
 

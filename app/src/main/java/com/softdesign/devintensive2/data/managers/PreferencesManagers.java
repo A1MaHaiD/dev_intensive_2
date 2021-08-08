@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PreferencesManagers {
-    private SharedPreferences mSharedPreferences;
+    private final SharedPreferences mSharedPreferences;
 
     private static final String [] USER_FIELD = {
             ConstantManager.USER_PHONE_KEY,

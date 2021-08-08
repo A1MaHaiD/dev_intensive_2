@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="user_profile">Змінити фотографію пофілю</string>
+    <string name="user_profile_title">Змінити фотографію пофілю</string>
+    <string name="user_profile_dialog_gallery">Загрузити з галереї</string>
+    <string name="user_profile_dialog_camera">Зробити знімок</string>
+    <string name="user_profile_dialog_cancel">Відмінити</string>
 </resources>

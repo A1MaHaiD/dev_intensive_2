@@ -3,10 +3,10 @@ package com.softdesign.devintensive2.data.managers;
 public class DataManager {
     private static DataManager INSTANCE = null;
 
-    private final PreferencesManagers mPreferencesManagers;
+    private final PreferencesManager mPreferencesManager;
 
     public DataManager(){
-        this.mPreferencesManagers = new PreferencesManagers();
+        this.mPreferencesManager = new PreferencesManager();
     }
 
     public static DataManager getInstance(){
@@ -16,8 +16,8 @@ public class DataManager {
         return INSTANCE;
     }
 
-    public PreferencesManagers getPreferencesManagers() {
-        return mPreferencesManagers;
+    public PreferencesManager getPreferencesManagers() {
+        return mPreferencesManager;
     }
 
 }

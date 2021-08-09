@@ -16,5 +16,8 @@ Studied the basics of C #, OOP, .Net Core basics. He wrote the simplest code lik
     <string name="user_profile_dialog_gallery">Загрузити з галереї</string>
     <string name="user_profile_dialog_camera">Зробити знімок</string>
     <string name="user_profile_dialog_cancel">Відмінити</string>
+    <string name="user_profile_chose_photo">Виберіть фото</string>
+    <string name="message_snack_bar">Для коректної роботи додатку необхідно задати потрібне розширення</string>
+    <string name="message_snack_bar_accept">Підтвердити</string>
 
 </resources>

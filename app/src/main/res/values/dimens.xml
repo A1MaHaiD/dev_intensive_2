@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="size_small_24">24dp</dimen>
-    <dimen name="spacing_medium_32">32dp</dimen>
-    <dimen name="spacing_medial_24">24dp</dimen>
-    <dimen name="spacing_normal_16">16dp</dimen>
-    <dimen name="size_big_72">72dp</dimen>
-    <dimen name="spacing_small_8">8dp</dimen>
-    <dimen name="line_size_2">2dp</dimen>
-    <dimen name="spacing_larger_72">72dp</dimen>
-    <dimen name="size_small_12">12sp</dimen>
-    <dimen name="big_large_size_96">96dp</dimen>
-    <dimen name="size_normal_16">16sp</dimen>
-    <dimen name="spacing_large_112">112dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Sizes -->
+    <dimen name="size_normal_24">24dp</dimen>
     <dimen name="size_medium_56">56dp</dimen>
-    <dimen name="spacing_action_bar_80">80dp</dimen>
-    <dimen name="profile_image_size_256">256dp</dimen>
-    <dimen name="fab_right_spice_16">16dp</dimen>
+    <dimen name="size_big_72">72dp</dimen>
+    <dimen name="size_big_large_96">96dp</dimen>
+
+    <dimen name="line_size_1">1dp</dimen>
     <dimen name="placeholder_photo_size_90">90dp</dimen>
+    <dimen name="user_info_size_112">112dp</dimen>
+    <dimen name="profile_image_size_256">256dp</dimen>
+
+    <!-- Spaces -->
+    <dimen name="spacing_small_8">8dp</dimen>
+    <dimen name="spacing_normal_16">16dp</dimen>
+    <dimen name="spacing_medial_24">24dp</dimen>
+    <dimen name="spacing_medium_32">32dp</dimen>
     <dimen name="spacing_large_56">56dp</dimen>
+    <dimen name="spacing_larger_72">72dp</dimen>
+    <dimen name="spacing_big_larger_112">112dp</dimen>
+
+    <dimen name="spacing_action_bar_80">80dp</dimen>
+    <dimen name="fab_right_spice_16">16dp</dimen>
+
+    <!-- Fonts -->
+    <dimen name="font_tiny_8">8sp</dimen>
+    <dimen name="font_small_12">12sp</dimen>
+    <dimen name="font_small_14">14sp</dimen>
+    <dimen name="font_normal_16">16sp</dimen>
+    <dimen name="font_medium_20">20sp</dimen>
+
 </resources>

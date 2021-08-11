@@ -25,8 +25,8 @@
     <style name="Theme.DevIntensive2.PopupOverlay" parent="Theme.MaterialComponents.Light"/>
 
     <style name="icon">
-        <item name="android:layout_width">@dimen/size_small_24</item>
-        <item name="android:layout_height">@dimen/size_small_24</item>
+        <item name="android:layout_width">@dimen/size_normal_24</item>
+        <item name="android:layout_height">@dimen/size_normal_24</item>
     </style>
 
     <style name="icon.left" parent="icon">

@@ -3,67 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="ui.behaviors.CustomNestedScrollBehavior">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/ll_user_info_wrapper"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_large_112"
-            android:background="@color/grey"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/et_rating"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="5"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="@dimen/size_normal_16" />
-
-            <View
-                android:layout_width="@dimen/line_size_2"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/spacing_small_8"
-                android:background="@color/white" />
-
-            <TextView
-                android:id="@+id/et_write_code"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="5"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="@dimen/size_normal_16" />
-
-            <View
-                android:layout_width="@dimen/line_size_2"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/spacing_small_8"
-                android:background="@color/white" />
-
-            <TextView
-                android:id="@+id/et_projects"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="5"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="@dimen/size_normal_16" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,7 +47,7 @@
                         android:text="+38(063)587-53-95"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/size_small_12" />
+                        android:textSize="@dimen/font_small_12" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -116,7 +61,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/line_size_2"
+            android:layout_height="@dimen/line_size_1"
             android:layout_marginStart="@dimen/spacing_larger_72"
             android:background="@color/grey_light" />
 
@@ -154,10 +99,10 @@
                         android:fontFamily="sans-serif-condensed-medium"
                         android:hint="E-mail"
                         android:inputType="textEmailAddress"
-                        android:text="Super.lukianchuk2010@gmail.com"
+                        android:text="super.lukianchuk2010@gmail.com"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/size_small_12" />
+                        android:textSize="@dimen/font_small_12" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -170,7 +115,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/line_size_2"
+            android:layout_height="@dimen/line_size_1"
             android:layout_marginStart="@dimen/spacing_larger_72"
             android:background="@color/grey_light" />
 
@@ -211,7 +156,7 @@
                         android:text="https://www.facebook.com/OlekLook"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/size_small_12" />
+                        android:textSize="@dimen/font_small_12" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -224,7 +169,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/line_size_2"
+            android:layout_height="@dimen/line_size_1"
             android:layout_marginStart="@dimen/spacing_larger_72"
             android:background="@color/grey_light" />
 
@@ -265,7 +210,7 @@
                         android:text="github.com/A1MaHaiD/dev_intensive_2"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/size_small_12" />
+                        android:textSize="@dimen/font_small_12" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -278,7 +223,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/line_size_2"
+            android:layout_height="@dimen/line_size_1"
             android:layout_marginStart="@dimen/spacing_larger_72"
             android:background="@color/grey_light" />
 
@@ -316,10 +261,10 @@
                         android:fontFamily="sans-serif-condensed-medium"
                         android:hint="Про себе"
                         android:inputType="textWebEditText"
-                        android:text="@string/about_me"
+                        android:text="@string/profile.about.dummy"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/size_small_12" />
+                        android:textSize="@dimen/font_small_12" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>

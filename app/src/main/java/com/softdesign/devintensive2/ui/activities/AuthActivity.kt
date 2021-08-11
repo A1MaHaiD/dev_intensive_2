@@ -1,12 +1,11 @@
 package com.softdesign.devintensive2.ui.activities
 
-
 import android.os.Bundle
 import com.softdesign.devintensive2.databinding.ActivityAuthBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 
-class AuthActivity : BaseActivity() {
 
+class AuthActivity : BaseActivity() {
     private val TAG: String = ConstantManager.TAG_PREFIX + "AuthActivity"
     lateinit var binding: ActivityAuthBinding
 

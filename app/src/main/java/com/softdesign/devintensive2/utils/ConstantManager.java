@@ -1,8 +1,5 @@
 package com.softdesign.devintensive2.utils;
 
-
-import org.jetbrains.annotations.Nullable;
-
 public interface ConstantManager {
     String TAG_PREFIX = "DEV_";
     String COLOR_MODE_KEY = "COLOR_MODE_KEY";

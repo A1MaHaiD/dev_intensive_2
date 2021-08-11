@@ -17,4 +17,8 @@ public class DevIntensive2Application extends Application {
     public static SharedPreferences getsSharedPreferences() {
         return sSharedPreferences;
     }
+    public static SharedPreferences getContext() {
+        return sSharedPreferences;
+    }
+
 }

@@ -40,28 +40,28 @@
                         android:src="@drawable/user_photo" />
 
                     <RelativeLayout
-                        android:visibility="gone"
                         android:id="@+id/rl_profile_placeholder"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/grey_background">
+                        android:background="@color/grey_background"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_above="@+id/iv_photo_placeholder"
                             android:layout_centerHorizontal="true"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/user_profile_title"
                             android:layout_marginBottom="@dimen/spacing_small_8"
+                            android:fontFamily="@string/ff_medium"
+                            android:text="@string/user_profile.dialog.title"
                             android:textColor="@color/white" />
 
                         <ImageView
                             android:id="@+id/iv_photo_placeholder"
                             android:layout_width="@dimen/placeholder_photo_size_90"
                             android:layout_height="@dimen/placeholder_photo_size_90"
-                            android:layout_centerHorizontal="true"
                             android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginBottom="@dimen/spacing_large_56"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_baseline_add_a_photo_24" />
@@ -79,6 +79,66 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_user_info_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_big_larger_112"
+            android:background="@color/grey"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:behavior_min_height="56dp"
+            app:layout_behavior="ui.behaviors.UserInfoBehavior">
+
+            <TextView
+                android:id="@+id/tv_rate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/profile.user_info.rate.hint"
+                android:text="@string/profile.user_info.rate.dummy"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/font_normal_16" />
+
+            <View
+                android:layout_width="@dimen/line_size_1"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/spacing_small_8"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_info_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/profile.user_info.code_line.hint"
+                android:text="@string/profile.user_info.code_line.dummy"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/font_normal_16" />
+
+            <View
+                android:layout_width="@dimen/line_size_1"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/spacing_small_8"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_projects"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/profile.user_info.project.hint"
+                android:text="@string/profile.user_info.project.dummy"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/font_normal_16" />
+
+        </LinearLayout>
 
         <include layout="@layout/user_layout_content" />
 

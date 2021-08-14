@@ -5,7 +5,9 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.softdesign.devintensive2.R;
 import com.softdesign.devintensive2.utils.UiHelper;
@@ -29,7 +31,7 @@ public class UserInfoBehavior<V extends LinearLayout> extends AppBarLayout.Scrol
     }
 
     @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, View child,final View dependency) {
+    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, final View dependency) {
         float currentFriction =
                 UiHelper.currentFriction(mMinAppbarHeight, mMaxAppbarHeight, dependency.getBottom());
         int currentHeight = UiHelper.lerp(mMinUserInfoHeight, mMaxUserInfoHeight, currentFriction);

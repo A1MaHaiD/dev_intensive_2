@@ -1,13 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DevIntensive2" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.DevIntensive2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/aqua_blue_200</item>
-        <item name="colorSecondaryVariant">@color/aqua_blue_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -15,5 +15,73 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="Theme.DevIntensive2.PopupOverlay" parent="Theme.MaterialComponents.DayNight"/>
+    <style name="Theme.DevIntensive2.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+    <style name="Theme.DevIntensive2.AppBarOverlay" parent="Theme.MaterialComponents.DayNight"/>
+
+    <style name="Theme.DevIntensive2.PopupOverlay" parent="Theme.MaterialComponents.Light"/>
+
+    <style name="icon">
+        <item name="android:layout_width">@dimen/size_normal_24</item>
+        <item name="android:layout_height">@dimen/size_normal_24</item>
+    </style>
+
+    <style name="icon.left" parent="icon">
+        <item name="android:layout_gravity">top|left</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medial_24</item>
+        <item name="android:layout_marginStart">@dimen/spacing_normal_16</item>
+    </style>
+
+    <style name="icon.right" parent="icon">
+        <item name="android:layout_gravity">top|right</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medial_24</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium_32</item>
+    </style>
+
+    <style name="user_info_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:enabled">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/grey</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="user_info">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="user_info_item">
+        <item name="android:layout_weight">0</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="user_info_value" parent="user_info">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="user_info_hint" parent="user_info">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Theme.DevIntensive2.Button.Red" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/purple_200</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="custom_dialog">
+        <item name="android:fullDark">@android:color/transparent</item>
+    </style>
 </resources>

@@ -101,12 +101,12 @@ class MainActivity : BaseActivity() {
         return when (id) {
             ConstantManager.LOAD_PROFILE_PHOTO -> {
                 val selectItem = arrayOf(
-                    getString(R.string.`user.profile_dialog_gallery`),
-                    getString(R.string.`user.profile_dialog_camera`),
-                    getString(R.string.`user.profile_dialog_cancel`)
+                    getString(R.string.user_profile_dialog_gallery),
+                    getString(R.string.user_profile_dialog_camera),
+                    getString(R.string.user_profile_dialog_cancel)
                 )
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle(getString(R.string.`user.profile_title`))
+                builder.setTitle(getString(R.string.user_profile_dialog_title))
                 builder.setItems(selectItem) { dialog, choiceItem ->
                     when (choiceItem) {
                         0 -> {
@@ -335,7 +335,7 @@ class MainActivity : BaseActivity() {
         takeGalleryIntent.type = "image/*"
         startActivityForResult(
             Intent
-                .createChooser(takeGalleryIntent, getString(R.string.`user.profile_chose_photo`)),
+                .createChooser(takeGalleryIntent, getString(R.string.user_profile_chose_message)),
             ConstantManager.REQUEST_GALLERY_PICTURE
         )
     }
@@ -373,10 +373,10 @@ class MainActivity : BaseActivity() {
             )
             Snackbar.make(
                 binding.coordinatorLayoutMain,
-                getString(R.string.`message.snack_bar`),
+                getString(R.string.message_snack_bar),
                 Snackbar.LENGTH_LONG
             )
-                .setAction(getString(R.string.`message.snack_bar.accept`)) {
+                .setAction(getString(R.string.message_snack_bar_accept)) {
                     openApplicationSettings()
                 }.show()
         }

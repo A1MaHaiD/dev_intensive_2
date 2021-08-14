@@ -33,9 +33,35 @@ class PreferencesManager {
     }
 
     fun loadUserPhoto(): Uri {
-        return Uri.parse(mSharedPreferences
-            .getString(ConstantManager.USER_PHOTO_KEY,
-                "android.resource://com.softdesign.devintensive2/drawable/user_photo"))
+        return Uri.parse(
+            mSharedPreferences
+                .getString(
+                    ConstantManager.USER_PHOTO_KEY,
+                    "android.resource:" +
+                            "//com.softdesign.devintensive2" +
+                            "/drawable" +
+                            "/user_photo"
+                )
+        )
+    }
+
+    private fun saveAuthToken(authToken: String) {
+        val editor: SharedPreferences.Editor = mSharedPreferences.edit()
+        editor.putString(ConstantManager.AUTH_TOKEN, authToken)
+        editor.apply()
+    }
+
+    fun getAuthToken(): String? {
+        return mSharedPreferences.getString(ConstantManager.AUTH_TOKEN, "null")
+    }
+
+    fun saveUserId(userId: String) {
+        val editor: SharedPreferences.Editor = mSharedPreferences.edit()
+        editor.putString(ConstantManager.USER_ID_KEY,userId)
+        editor.apply()
+    }
+    fun getUserId(): String? {
+        return mSharedPreferences.getString(ConstantManager.USER_ID_KEY, "null")
     }
 
     companion object {

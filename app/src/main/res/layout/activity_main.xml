@@ -5,7 +5,6 @@
     android:id="@+id/dl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".ui.activities.MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -53,7 +52,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="@dimen/spacing_small_8"
                             android:fontFamily="@string/ff_medium"
-                            android:text="@string/user_profile.dialog.title"
+                            android:text="@string/user_profile_dialog_title"
                             android:textColor="@color/white" />
 
                         <ImageView
@@ -84,63 +83,71 @@
             android:id="@+id/ll_user_info_wrapper"
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_big_larger_112"
-            android:background="@color/grey"
+            android:background="@color/purple_500"
             android:gravity="center"
             android:orientation="horizontal"
             app:behavior_min_height="56dp"
             app:layout_behavior="ui.behaviors.UserInfoBehavior">
 
-            <TextView
-                android:id="@+id/tv_rate"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="@string/profile.user_info.rate.hint"
-                android:text="@string/profile.user_info.rate.dummy"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="@dimen/font_normal_16" />
+            <LinearLayout
+                style="@style/user_info_item"
+                android:layout_weight="0.25">
+
+                <TextView
+                    android:id="@+id/tv_user_info_rate"
+                    style="@style/user_info_value"
+                    android:text="@string/profile_user_info_rate_dummy" />
+
+                <TextView
+                    android:id="@+id/tv_rate_hint"
+                    style="@style/user_info_hint"
+                    android:text="@string/profile_user_info_rate_hint" />
+            </LinearLayout>
 
             <View
                 android:layout_width="@dimen/line_size_1"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/spacing_small_8"
-                android:background="@color/white" />
+                android:layout_height="@dimen/size_large_72"
+                android:background="@color/grey_light" />
 
-            <TextView
-                android:id="@+id/tv_info_code"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="@string/profile.user_info.code_line.hint"
-                android:text="@string/profile.user_info.code_line.dummy"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="@dimen/font_normal_16" />
+            <LinearLayout
+                style="@style/user_info_item"
+                android:layout_weight="0.5">
+
+                <TextView
+                    android:id="@+id/tv_user_info_code_line"
+                    style="@style/user_info_value"
+                    android:text="@string/profile_user_info_code_line_dummy" />
+
+                <TextView
+                    android:id="@+id/tv_code_line_hint"
+                    style="@style/user_info_hint"
+                    android:text="@string/profile_user_info_code_line_hint" />
+            </LinearLayout>
 
             <View
                 android:layout_width="@dimen/line_size_1"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/spacing_small_8"
-                android:background="@color/white" />
+                android:layout_height="@dimen/size_large_72"
+                android:background="@color/grey_light" />
 
-            <TextView
-                android:id="@+id/tv_projects"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="@string/profile.user_info.project.hint"
-                android:text="@string/profile.user_info.project.dummy"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="@dimen/font_normal_16" />
+            <LinearLayout
+                style="@style/user_info_item"
+                android:layout_weight="0.25">
+
+                <TextView
+                    android:id="@+id/tv_user_info_project"
+                    style="@style/user_info_value"
+                    android:text="@string/profile_user_info_project_dummy" />
+
+                <TextView
+                    android:id="@+id/tv_project_hint"
+                    style="@style/user_info_hint"
+                    android:text="@string/profile_user_info_project_hint" />
+            </LinearLayout>
 
         </LinearLayout>
 
         <include layout="@layout/user_layout_content" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_main"

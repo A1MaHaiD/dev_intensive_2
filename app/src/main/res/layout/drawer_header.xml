@@ -30,16 +30,16 @@
             android:fontFamily="sans-serif-medium"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_small_14" />
 
         <TextView
             android:id="@+id/tv_user_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="myMail@gmail.com"
+            android:text="@string/profile_mail_dummy"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/font_small_14" />
 
     </LinearLayout>
 

@@ -1,5 +1,4 @@
 package com.softdesign.devintensive2.utils;
-
 import android.content.Context;
 import android.util.TypedValue;
 
@@ -7,7 +6,7 @@ import com.softdesign.devintensive2.R;
 
 public class UiHelper {
 
-    private static Context mContext = (Context) DevIntensive2Application.getContext();
+    private static Context mContext = DevIntensive2Application.getContext();
 
     public static int getStatusBarHeight() {
         int result = 0;

@@ -1,39 +1,37 @@
 <resources>
-
     <!-- Main Activity -->
     <string name="app_name">Лук\'янчук Олександр</string>
-    <string name="profile.phone.hint">Мобільний</string>
-    <string name="profile.phone.dummy">+38(063)587–53–95</string>
-    <string name="profile.mail.hint">E-mail</string>
-    <string name="profile.mail.dummy">super.lukianchuk2010@gmail.com</string>
-    <string name="profile.facebook.hint">Пофіль в Facebook</string>
-    <string name="profile.facebook.dummy">https://www.facebook.com/OlekLook</string>
-    <string name="profile.github.hint">Репозиторій</string>
-    <string name="profile.github.dummy">github.com/A1MaHaiD/dev_intensive_2</string>
-    <string name="profile.about.hint">Про себе</string>
-    <string name="profile.about.dummy">I know the basics of Java, Kotlin loops, collections, worked with streams, exceptions, the correct construction of classes in OOP (5 months of study, 5 consolidation of skills in the android studio)\nAbility to work with XML markup, elements, templates\nParticipated in the development of fitness app for pregnant women FitMama\nWorked with MVP architecture\nUsed libraries Volley, Glide, Picasso, GeoFire, GDX, Room, Dagger, Retrofit and the main library. (I started studying LifeData, then Coroutines, Crashlytics)\nPerfectly mastered the development of a messenger application similar to Viber, WhatsApp, Telegram with a Firebase database\nI created my own database (data of the sports club). Familiar with the basics of SQL, JSON\nCreated the Music player application, the banner application, the simplest animations, video additions, various ways of storing data\nWrote a clone of the Flappy bird game, based on the GDX engine\nWorked with Google Location \ Maps API\nFinished an app with an Uber clone, using Firebase, for authorization and location storage\nStudied the basics of C #, OOP, .Net Core basics. He wrote the simplest code like the Fibonacci number, factorial, parsing Roman numbers, the game "Tic-Tac-Toe", "Hangman"</string>
-    <string name="profile.user_info.rate.hint">5</string>
-    <string name="profile.user_info.rate.dummy">Рейтинг</string>
-    <string name="profile.user_info.code_line.hint">5</string>
-    <string name="profile.user_info.code_line.dummy">Написано рядків коду</string>
-    <string name="profile.user_info.project.hint">5</string>
-    <string name="profile.user_info.project.dummy">Проектів</string>
-    <string name="user_profile.placeholder.image">Змінити фотографію пофілю</string>
-    <string name="user_profile.dialog.gallery">Загрузити з галереї</string>
-    <string name="user_profile.dialog.camera">Зробити знімок</string>
-    <string name="user_profile.dialog.cancel">Відмінити</string>
-    <string name="user_profile.dialog.title">Змінити фотографію пофілю</string>
-    <string name="user.profile.chose.message">Виберіть фото</string>
-    <string name="message.snack_bar">Для коректної роботи додатку необхідно задати потрібне розширення</string>
-    <string name="message.snack_bar.accept">Підтвердити</string>
+    <string name="profile_phone_hint">Мобільний</string>
+    <string name="profile_phone_dummy">+38(063)587–53–95</string>
+    <string name="profile_mail_hint">E-mail</string>
+    <string name="profile_mail_dummy">super.lukianchuk2010@gmail.com</string>
+    <string name="profile_facebook_hint">Пофіль в Facebook</string>
+    <string name="profile_facebook_dummy">https://www.facebook.com/OlekLook</string>
+    <string name="profile_github_hint">Репозиторій</string>
+    <string name="profile_github_dummy">github.com/A1MaHaiD/dev_intensive_2</string>
+    <string name="profile_about_hint">Про себе</string>
+    <string name="profile_about_dummy">I know the basics of Java, Kotlin loops, collections, worked with streams, exceptions, the correct construction of classes in OOP (5 months of study, 5 consolidation of skills in the android studio)\nAbility to work with XML markup, elements, templates\nParticipated in the development of fitness app for pregnant women FitMama\nWorked with MVP architecture\nUsed libraries Volley, Glide, Picasso, GeoFire, GDX, Room, Dagger, Retrofit and the main library. (I started studying LifeData, then Coroutines, Crashlytics)\nPerfectly mastered the development of a messenger application similar to Viber, WhatsApp, Telegram with a Firebase database\nI created my own database (data of the sports club). Familiar with the basics of SQL, JSON\nCreated the Music player application, the banner application, the simplest animations, video additions, various ways of storing data\nWrote a clone of the Flappy bird game, based on the GDX engine\nWorked with Google Location \ Maps API\nFinished an app with an Uber clone, using Firebase, for authorization and location storage\nStudied the basics of C #, OOP, .Net Core basics. He wrote the simplest code like the Fibonacci number, factorial, parsing Roman numbers, the game "Tic-Tac-Toe", "Hangman"</string>
+    <string name="profile_user_info_rate_dummy">5</string>
+    <string name="profile_user_info_rate_hint">Рейтинг</string>
+    <string name="profile_user_info_code_line_dummy">5</string>
+    <string name="profile_user_info_code_line_hint">Написано рядків коду</string>
+    <string name="profile_user_info_project_dummy">5</string>
+    <string name="profile_user_info_project_hint">Проектів</string>
+    <string name="user_profile_placeholder_image">Змінити фотографію пофілю</string>
+    <string name="user_profile_dialog_gallery">Загрузити з галереї</string>
+    <string name="user_profile_dialog_camera">Зробити знімок</string>
+    <string name="user_profile_dialog_cancel">Відмінити</string>
+    <string name="user_profile_dialog_title">Змінити фотографію пофілю</string>
+    <string name="user_profile_chose_message">Виберіть фото</string>
+    <string name="message_snack_bar">Для коректної роботи додатку необхідно задати потрібне розширення</string>
+    <string name="message_snack_bar_accept">Підтвердити</string>
     <!-- Font Family -->
     <string name="ff_medium">sans-serif-medium</string>
     <string name="ff_regular">sans-serif</string>
     <!-- Auth Activity -->
-    <string name="auth.authorization_enter">Ввійти</string>
-    <string name="auth.email">Введіть e-mail</string>
-    <string name="auth.password">Введіть пароль</string>
-    <string name="auth.login">Ввійти</string>
-    <string name="auth.remember">Забули пароль?</string>
-
+    <string name="auth_authorization_enter">Ввійти</string>
+    <string name="auth_email">Введіть e-mail</string>
+    <string name="auth_password">Введіть пароль</string>
+    <string name="auth_login">Ввійти</string>
+    <string name="auth_remember">Забули пароль?</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.softdesign.devintensive2.data.network;
 
 import com.softdesign.devintensive2.data.network.interceptors.HeaderInterceptor;
+import com.softdesign.devintensive2.utils.AppConfig;
 
 import java.io.IOException;
 
@@ -16,17 +17,21 @@ public class ServiceGenerator {
 
     private static Retrofit.Builder sBuilder =
             new Retrofit.Builder()
-                    .baseUrl("https://api.github.com/")
+                    .baseUrl(AppConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create());
 
-//    public static <S> S createService (Class<S> serviceClass){
-//
-//        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-//        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-//
-//        httpClient.addInterceptor(new HeaderInterceptor());
-//        httpClient.addInterceptor(logging);
-//    }
+    public static <S> S createService (Class<S> serviceClass){
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        httpClient.addInterceptor(logging);
+
+        Retrofit retrofit = sBuilder
+                .client(httpClient.build())
+                .build();
+        return retrofit.create(serviceClass);
+    }
 
 //    String run(String url) throws IOException {
 //        Request request = new Request.Builder()

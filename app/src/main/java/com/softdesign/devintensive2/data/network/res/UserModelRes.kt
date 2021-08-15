@@ -15,107 +15,107 @@ data class UserModelRes(
 data class Data(
     @SerializedName("user")
     @Expose
-    private val user: User,
+    val user: User,
     @SerializedName("token")
     @Expose
-    private val token: String
+    val token: String
 )
 data class Contacts(
     @SerializedName("vk")
     @Expose
-    private val vk: String,
+    val vk: String,
     @SerializedName("phone")
     @Expose
-    private val phone: String,
+    val phone: String,
     @SerializedName("email")
     @Expose
-    private val email: String,
+    val email: String,
     @SerializedName("updated")
     @Expose
-    private val updated: String
+    val updated: String
 )
 data class ProfileValues(
     @SerializedName("homeTask")
     @Expose
-    private val homeTask:Int,
+    val homeTask:Int,
     @SerializedName("projects")
     @Expose
-    private val projects:Int,
+    val projects:Int,
     @SerializedName("linesCode")
     @Expose
-    private val linesCode:Int,
+    val linesCode:Int,
     @SerializedName("rait")
     @Expose
-    private val rait:Int,
+    val rait:Int,
     @SerializedName("updated")
     @Expose
-    private val updated:String
+    val updated:String
 )
 data class PublicInfo(
     @SerializedName("bio")
     @Expose
-    private val bio:String,
+    val bio:String,
     @SerializedName("avatar")
     @Expose
-    private val avatar:String,
+    val avatar:String,
     @SerializedName("photo")
     @Expose
-    private val photo:String,
+    val photo:String,
     @SerializedName("updated")
     @Expose
-    private val updated:String
+    val updated:String
 )
 data class Repo(
     @SerializedName("_id")
     @Expose
-    private val id:String,
+    val id:String,
     @SerializedName("git")
     @Expose
-    private val git:String,
+    val git:String,
     @SerializedName("title")
     @Expose
-    private val title:String
+    val title:String
 )
 data class Repositories(
     @SerializedName("repo")
     @Expose
-    private val repo:List<Repo> = ArrayList<Repo>(),
+    val repo:List<Repo> = ArrayList<Repo>(),
     @SerializedName("updated")
     @Expose
-    private val updated:String
+    val updated:String
 )
 data class User(
     @SerializedName("_id")
     @Expose
-    private val id:String,
+    val id:String,
     @SerializedName("first_name")
     @Expose
-    private val firstName:String,
+    val firstName:String,
     @SerializedName("second_name")
     @Expose
-    private val secondName:String,
+    val secondName:String,
     @SerializedName("__v")
     @Expose
-    private val v:Int,
+    val v:Int,
     @SerializedName("repositories")
     @Expose
-    private val repositories: Repositories,
+    val repositories: Repositories,
     @SerializedName("contacts")
     @Expose
-    private val contacts:Contacts,
+    val contacts:Contacts,
     @SerializedName("profileValues")
     @Expose
-    private val profileValues: ProfileValues,
+    val profileValues: ProfileValues,
     @SerializedName("publicInfo")
     @Expose
-    private val publicInfo: PublicInfo,
+    val publicInfo: PublicInfo,
     @SerializedName("specialization")
     @Expose
-    private val specialization:String,
+    val specialization:String,
     @SerializedName("role")
     @Expose
-    private val role:String,
+    val role:String,
     @SerializedName("updated")
     @Expose
-    private val updated:String
+    val updated:String
 )

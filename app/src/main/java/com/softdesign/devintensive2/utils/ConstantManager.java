@@ -14,6 +14,9 @@ public interface ConstantManager {
     String USER_PHOTO_KEY = "USER_PHOTO_KEY";
     String AUTH_TOKEN = "AUTH_TOKEN";
     String USER_ID_KEY = "USER_ID_KEY";
+    String USER_RATING_VALUE = "USER_RATING_VALUE";
+    String USER_CODE_LINES_VALUE = "USER_CODE_LINES_VALUE";
+    String USER_PROJECT_VALUE = "USER_PROJECT_VALUE";
 
 
     int LOAD_PROFILE_PHOTO = 0;
@@ -21,5 +24,6 @@ public interface ConstantManager {
     int REQUEST_GALLERY_PICTURE = 98;
     int PERMISSION_REQUEST_SETTINGS_CODE = 97;
     int CAMERA_REQUEST_PERMISSION_CODE = 98;
+
 
 }

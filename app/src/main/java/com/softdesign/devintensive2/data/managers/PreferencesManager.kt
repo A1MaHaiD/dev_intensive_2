@@ -32,6 +32,22 @@ class PreferencesManager {
         editor.apply()
     }
 
+    fun loadUserProfileValues (): MutableList<String?> {
+        val userValues: MutableList<String?> = ArrayList()
+        userValues.add(mSharedPreferences.getString(ConstantManager.USER_RATING_VALUE, "0"))
+        userValues.add(mSharedPreferences.getString(ConstantManager.USER_CODE_LINES_VALUE, "0"))
+        userValues.add(mSharedPreferences.getString(ConstantManager.USER_PROJECT_VALUE, "0"))
+        return userValues
+    }
+
+    fun saveUserProfileValues(userValues :IntArray){
+        val editor = mSharedPreferences.edit()
+        for (i in UserValues.USER_VALUES.indices) {
+            editor.putString(UserValues.USER_VALUES[i], userValues[i].toString())
+        }
+        editor.apply()
+    }
+
     fun loadUserPhoto(): Uri {
         return Uri.parse(
             mSharedPreferences
@@ -45,7 +61,7 @@ class PreferencesManager {
         )
     }
 
-    private fun saveAuthToken(authToken: String) {
+    fun saveAuthToken(authToken: String) {
         val editor: SharedPreferences.Editor = mSharedPreferences.edit()
         editor.putString(ConstantManager.AUTH_TOKEN, authToken)
         editor.apply()

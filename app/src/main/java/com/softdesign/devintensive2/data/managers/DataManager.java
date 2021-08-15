@@ -40,7 +40,7 @@ public class DataManager {
 
     //Region ===============  Network  ==========================
 
-    public Call<UserModelRes> login(UserLoginReq userLoginReq){
+    public Call<UserModelRes> loginUser(UserLoginReq userLoginReq){
         return mRestService.loginUser(userLoginReq);
     }
 

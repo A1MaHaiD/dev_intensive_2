@@ -32,17 +32,4 @@ public class ServiceGenerator {
                 .build();
         return retrofit.create(serviceClass);
     }
-
-//    String run(String url) throws IOException {
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .build();
-//
-//        try (Response response = httpClient.newCall(request).execute()) {
-//            return response.body().string();
-//        }
-//    }
-
-
-//    RestService service = sBuilder.create(RestService.class);
 }

@@ -16,6 +16,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -46,6 +47,7 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bindingChild: UserLayoutContentBinding
     private lateinit var mUserInfoViews: MutableList<EditText>
+    private lateinit var mUserValueViews: MutableList<TextView>
     private var mCurrentEditMode: Int = 0
     private var mAppBarParam: LayoutParams? = null
     private var mAppBarLayout: AppBarLayout? = null
@@ -62,11 +64,15 @@ class MainActivity : BaseActivity() {
         setContentView(view)
         Log.d(TAG, "onCreate")
 
+
+
         mDataManager = DataManager.getInstance()
+        mUserValueInit()
         mUserInfoInit()
         setupToolbar()
         setupDrawable()
-        loadUserInfoValue()
+        initUserFields()
+        initUserInfoValue()
 //        @Picasso don't work && crashed app
 //        Picasso.get()
 //            .load(mDataManager.preferencesManagers.loadUserPhoto())
@@ -167,6 +173,14 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun mUserValueInit() {
+        mUserValueViews = ArrayList()
+        mUserValueViews.add(binding.tvUserInfoRate)
+        mUserValueViews.add(binding.tvUserInfoCodeLine)
+        mUserValueViews.add(binding.tvUserInfoProject)
+        Log.e(TAG, "mUserValueInit")
+    }
+
     private fun mUserInfoInit() {
         mUserInfoViews = ArrayList()
         mUserInfoViews.add(bindingChild.etPhone)
@@ -197,7 +211,7 @@ class MainActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         Log.d(TAG, "onPause")
-        saveUserInfoValue()
+        saveUserFields()
     }
 
     override fun onStop() {
@@ -306,12 +320,12 @@ class MainActivity : BaseActivity() {
                 hideProfilePlaceholder()
                 unlockToolbar()
                 binding.ctlMain.setExpandedTitleColor(resources.getColor(R.color.white))
-                saveUserInfoValue()
+                saveUserFields()
             }
         }
     }
 
-    private fun loadUserInfoValue() {
+    private fun initUserFields() {
         val userData: List<String?> = mDataManager.preferencesManagers
             .loadUserProfileData()
         for (i in userData.indices) {
@@ -319,12 +333,19 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun saveUserInfoValue() {
+    private fun saveUserFields() {
         val userData: MutableList<String?> = ArrayList()
         for (userFieldView in mUserInfoViews) {
             userData.add(userFieldView.text.toString())
         }
         mDataManager.preferencesManagers.saveUserProfileData(userData)
+    }
+
+    private fun initUserInfoValue() {
+        val userData: List<String?> = mDataManager.preferencesManagers.loadUserProfileValues()
+        for (i in userData.indices) {
+            mUserValueViews[i].text = userData[i]
+        }
     }
 
     private fun loadPhotoFromGallery() {

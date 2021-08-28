@@ -17,6 +17,10 @@ import com.softdesign.devintensive2.utils.NetworkStatusChecker
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.Unit.toString
+import kotlin.coroutines.EmptyCoroutineContext.toString
+import kotlin.time.TimeSource.Monotonic.toString
 
 
 class AuthActivity : BaseActivity(), View.OnClickListener {
@@ -73,10 +77,11 @@ class AuthActivity : BaseActivity(), View.OnClickListener {
         startActivity(rememberIntent)
     }
 
-    private fun loginSuccess(response: Response<UserModelRes>) {
-        showSnackbar(response.body()!!.data.token)
-        mDataManager!!.preferencesManagers.saveAuthToken(response.body()!!.data.token)
-        mDataManager!!.preferencesManagers.saveUserId(response.body()!!.data.user.id)
+    private fun loginSuccess(userModel: UserModelRes) {
+        showSnackbar(userModel.data.token)
+        mDataManager!!.preferencesManagers.saveAuthToken(userModel.data.token)
+        mDataManager!!.preferencesManagers.saveUserId(userModel.data.user.id)
+        saveUserValues(userModel)
 //            showSnackbar("Вхід")
 
         val loginIntent = Intent(this, MainActivity::class.java)
@@ -86,6 +91,7 @@ class AuthActivity : BaseActivity(), View.OnClickListener {
     private fun signIn() {
         if (NetworkStatusChecker.isNetworkAvailable(this)) {
             val call: Call<UserModelRes> = mDataManager!!.loginUser(
+//                Date().toString(),
                 UserLoginReq(
                     binding.etLoginEmail.text.toString(),
                     binding.etLoginPassword.text.toString()
@@ -97,7 +103,7 @@ class AuthActivity : BaseActivity(), View.OnClickListener {
                     response: Response<UserModelRes>
                 ) {
                     if (response.code() == 200) {
-                        loginSuccess(response)
+                        loginSuccess(response.body()!!)
                     } else if (response.code() == 404) {
                         showSnackbar("Невірний логін або пароль")
                     } else {
@@ -112,5 +118,14 @@ class AuthActivity : BaseActivity(), View.OnClickListener {
         } else {
             showSnackbar("Відсутнє з'єднання з мережой, повторіть пізніше")
         }
+    }
+
+    private fun saveUserValues(userModel: UserModelRes) {
+        val userValues = intArrayOf(
+            userModel.data.user.profileValues.rait,
+            userModel.data.user.profileValues.rait,
+            userModel.data.user.profileValues.rait
+        )
+        mDataManager!!.preferencesManagers.saveUserProfileValues(userValues)
     }
 }

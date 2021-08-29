@@ -26,15 +26,119 @@
                 android:id="@+id/tv_user_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:fontFamily="@string/ff_medium"
+                android:paddingHorizontal="@dimen/spacing_normal_16"
+                android:paddingBottom="@dimen/spacing_medial_24"
                 android:text="@string/user_full_name"
                 android:textColor="@color/white"
-                android:fontFamily="@string/ff_medium"
-                android:textSize="@dimen/font_large_24"
-                android:paddingHorizontal="@dimen/spacing_normal_16"
-                android:paddingBottom="@dimen/spacing_normal_16"
-                />
+                android:textSize="@dimen/font_large_24" />
 
         </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_large_72"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_medium"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_medium_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_regular"
+                    android:text="@string/profile_user_info_rate_hint"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_medium"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_medium_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_regular"
+                    android:text="@string/profile_user_info_code_line_hint"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_medium"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_medium_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_regular"
+                    android:text="@string/profile_user_info_project_hint"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small_14" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@string/ff_regular"
+            android:maxLines="3"
+            android:paddingHorizontal="@dimen/spacing_normal_16"
+            android:text="@string/profile_about_dummy"
+            android:textColor="@color/grey_light"
+            android:textSize="@dimen/font_small_14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_normal_16"
+            android:layout_marginBottom="@dimen/spacing_small_8"
+            android:background="@color/grey_light" />
+
+        <Button
+            android:id="@+id/b_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/more_info" />
 
     </LinearLayout>
 

@@ -9,8 +9,10 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout_main"
+        android:background="@color/purple_500"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.DevIntensive2.AppBarOverlay">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/abl_main"
@@ -72,7 +74,7 @@
                     android:id="@+id/tb_main"
                     style="@style/Theme.DevIntensive2.PopupOverlay"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="?attr/behavior_min_height"
                     app:layout_collapseMode="pin" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>

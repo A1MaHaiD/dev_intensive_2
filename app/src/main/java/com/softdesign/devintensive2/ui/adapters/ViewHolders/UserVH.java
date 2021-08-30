@@ -10,8 +10,8 @@ import com.softdesign.devintensive2.ui.views.AspectRatioImageView;
 
 public class UserVH extends RecyclerView.ViewHolder {
 
-    protected AspectRatioImageView userPhoto;
-    protected TextView mFullName, mRating, mCodeLine, mProjects, mAbout;
+    public AspectRatioImageView userPhoto;
+    public TextView mFullName, mRating, mCodeLine, mProjects, mAbout;
 
     public UserVH(View itemView) {
         super(itemView);

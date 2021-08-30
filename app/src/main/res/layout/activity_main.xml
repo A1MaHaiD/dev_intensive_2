@@ -65,7 +65,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="@dimen/spacing_large_56"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_baseline_add_a_photo_24" />
+                            android:src="@drawable/user_placeholder_24" />
                     </RelativeLayout>
 
                 </FrameLayout>

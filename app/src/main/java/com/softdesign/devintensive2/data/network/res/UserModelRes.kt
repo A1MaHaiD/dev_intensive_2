@@ -125,8 +125,4 @@ data class User(
     @SerializedName("updated")
     @Expose
     val updated: String
-) {
-    fun getFullName(): String {
-        return "$firstName $secondName"
-    }
-}
+)

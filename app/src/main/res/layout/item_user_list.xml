@@ -17,6 +17,7 @@
             android:layout_height="wrap_content">
 
             <com.softdesign.devintensive2.ui.views.AspectRatioImageView
+                android:id="@+id/ariv_user_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/user_photo"
@@ -50,6 +51,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@string/ff_medium"
@@ -74,6 +76,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_code_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@string/ff_medium"
@@ -98,6 +101,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_project"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@string/ff_medium"
@@ -138,8 +142,9 @@
             android:id="@+id/b_more_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/more_info" />
+            android:paddingHorizontal="@dimen/spacing_normal_16"
+            android:text="@string/more_info"
+            android:textColor="@color/aqua_blue_200" />
 
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

@@ -7,11 +7,12 @@ import com.google.gson.annotations.SerializedName
 data class UserModelRes(
     @SerializedName("success")
     @Expose
-    val success:Boolean,
+    val success: Boolean,
     @SerializedName("data")
     @Expose
     val data: Data
 )
+
 data class Data(
     @SerializedName("user")
     @Expose
@@ -20,6 +21,7 @@ data class Data(
     @Expose
     val token: String
 )
+
 data class Contacts(
     @SerializedName("vk")
     @Expose
@@ -34,75 +36,80 @@ data class Contacts(
     @Expose
     val updated: String
 )
+
 data class ProfileValues(
     @SerializedName("homeTask")
     @Expose
-    val homeTask:Int,
+    val homeTask: Int,
     @SerializedName("projects")
     @Expose
-    val projects:Int,
+    val projects: Int,
     @SerializedName("linesCode")
     @Expose
-    val linesCode:Int,
+    val linesCode: Int,
     @SerializedName("rait")
     @Expose
-    val rait:Int,
+    val rait: Int,
     @SerializedName("updated")
     @Expose
-    val updated:String
+    val updated: String
 )
+
 data class PublicInfo(
     @SerializedName("bio")
     @Expose
-    val bio:String,
+    val bio: String,
     @SerializedName("avatar")
     @Expose
-    val avatar:String,
+    val avatar: String,
     @SerializedName("photo")
     @Expose
-    val photo:String,
+    val photo: String,
     @SerializedName("updated")
     @Expose
-    val updated:String
+    val updated: String
 )
+
 data class Repo(
     @SerializedName("_id")
     @Expose
-    val id:String,
+    val id: String,
     @SerializedName("git")
     @Expose
-    val git:String,
+    val git: String,
     @SerializedName("title")
     @Expose
-    val title:String
+    val title: String
 )
+
 data class Repositories(
     @SerializedName("repo")
     @Expose
-    val repo:List<Repo> = ArrayList<Repo>(),
+    val repo: List<Repo> = ArrayList<Repo>(),
     @SerializedName("updated")
     @Expose
-    val updated:String
+    val updated: String
 )
+
 data class User(
     @SerializedName("_id")
     @Expose
-    val id:String,
+    val id: String,
     @SerializedName("first_name")
     @Expose
-    val firstName:String,
+    val firstName: String,
     @SerializedName("second_name")
     @Expose
-    val secondName:String,
+    val secondName: String,
     @SerializedName("__v")
     @Expose
-    val v:Int,
+    val v: Int,
     @SerializedName("repositories")
     @Expose
     val repositories: Repositories,
     @SerializedName("contacts")
     @Expose
-    val contacts:Contacts,
+    val contacts: Contacts,
     @SerializedName("profileValues")
     @Expose
     val profileValues: ProfileValues,
@@ -111,11 +118,15 @@ data class User(
     val publicInfo: PublicInfo,
     @SerializedName("specialization")
     @Expose
-    val specialization:String,
+    val specialization: String,
     @SerializedName("role")
     @Expose
-    val role:String,
+    val role: String,
     @SerializedName("updated")
     @Expose
-    val updated:String
-)
+    val updated: String
+) {
+    fun getFullName(): String {
+        return "$firstName $secondName"
+    }
+}

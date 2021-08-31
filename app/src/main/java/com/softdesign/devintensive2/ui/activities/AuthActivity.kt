@@ -29,7 +29,7 @@ class AuthActivity : BaseActivity(), View.OnClickListener {
     private var mSignIn: Button? = null
     private var mRememberPassword: TextView? = null
 
-    private val TAG: String = ConstantManager.TAG_PREFIX + "AuthActivity"
+    private val TAG: String = ConstantManager.TAG_PREFIX + " AuthActivity"
     lateinit var binding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -41,7 +41,7 @@ import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
 
-    private val TAG: String = ConstantManager.TAG_PREFIX + "MainActivity"
+    private val TAG: String = ConstantManager.TAG_PREFIX + " MainActivity"
 
     private lateinit var mDataManager: DataManager
     private lateinit var binding: ActivityMainBinding

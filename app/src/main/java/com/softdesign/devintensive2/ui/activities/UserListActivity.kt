@@ -2,29 +2,40 @@ package com.softdesign.devintensive2.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
-import android.widget.Toolbar
+import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
+import com.softdesign.devintensive2.R2.id.position
 import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.data.network.res.UserData
+import com.softdesign.devintensive2.data.network.res.UserListRes
 import com.softdesign.devintensive2.databinding.ActivityUserListBinding
 import com.softdesign.devintensive2.ui.adapters.UserAdapter
+import com.softdesign.devintensive2.ui.adapters.ViewHolders.UserVH
+import com.softdesign.devintensive2.utils.ConstantManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserListActivity : AppCompatActivity() {
 
+    private val TAG: String = ConstantManager.TAG_PREFIX + " UserListActivity"
+
     private var mCoordinatorLayout: CoordinatorLayout? = null
-    private var mToolbar: Toolbar? = null
+    private var mToolbar: androidx.appcompat.widget.Toolbar? = null
     private var mNavigationDrawer: DrawerLayout? = null
     private var mRecyclerView: RecyclerView? = null
 
     private var mDataManager: DataManager? = null
     private var mUserAdapter: UserAdapter? = null
-    private var mUser: ArrayList<UserData>? = null
+    private var mUsers: List<UserData>? = null
 
     lateinit var binding: ActivityUserListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +45,15 @@ class UserListActivity : AppCompatActivity() {
         setContentView(view)
 
         mDataManager = DataManager.getInstance()
-        mCoordinatorLayout = findViewById(R.id.coordinator_layout_user_list)
-        mToolbar = findViewById(R.id.tb_user_list)
+        mCoordinatorLayout = binding.coordinatorLayoutUserList
+        mToolbar = binding.tbUserList
         mNavigationDrawer = findViewById(R.id.nv_user_list)
+        mRecyclerView = findViewById(R.id.rv_user_list)
 
-        setupToobar()
+        var linearLayoutManager: LinearLayoutManager = LinearLayoutManager(this)
+        mRecyclerView?.layoutManager = linearLayoutManager
+
+        setupToolbar()
         setupDrawer()
         loadUsers()
     }
@@ -54,15 +69,47 @@ class UserListActivity : AppCompatActivity() {
         Snackbar.make(mCoordinatorLayout!!, message, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun setupToobar() {
-        TODO("Not yet implemented")
+    private fun setupToolbar() {
+        setSupportActionBar(mToolbar)
+        var actionBar: androidx.appcompat.app.ActionBar? = supportActionBar
+
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
     }
 
     private fun setupDrawer() {
-        TODO("Not yet implemented")
+        // TODO: Ралізувати перехід в іншу актівіті при кліку по елементі меню в NavigationDrawer
     }
 
     private fun loadUsers() {
-        TODO("Not yet implemented")
+        val call: Call<UserListRes> = mDataManager!!.userList
+
+        call.enqueue(object : Callback<UserListRes> {
+            override fun onResponse(call: Call<UserListRes>, response: Response<UserListRes>) {
+                try {
+                    mUsers = response.body()?.data
+                    mUserAdapter = UserAdapter(mUsers, UserVH.CustomClickListener{
+                        showSnackbar("Користувач з індеком "+ position)
+
+                        //TODO: По відкриттю кліком відкрити нове Activity та передати на нього данні користувача
+                    }
+
+
+
+                    )
+                    mRecyclerView?.adapter = mUserAdapter
+                } catch (e: NullPointerException) {
+                    Log.e(TAG, e.toString())
+                    showSnackbar("Щось пішло не по плану")
+                }
+            }
+
+            override fun onFailure(call: Call<UserListRes>, t: Throwable) {
+                //TODO: Обробити помилки
+            }
+
+        })
     }
 }

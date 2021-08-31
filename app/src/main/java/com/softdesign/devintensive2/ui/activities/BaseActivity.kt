@@ -9,7 +9,7 @@ import com.softdesign.devintensive2.utils.ConstantManager
 import kotlin.Exception
 
 open class BaseActivity : AppCompatActivity() {
-    private val TAG: String = ConstantManager.TAG_PREFIX + "BaseActivity"
+    private val TAG: String = ConstantManager.TAG_PREFIX + " BaseActivity"
     lateinit var mProgressDialog:AlertDialog
     fun showProgress() {
         mProgressDialog.setContentView(R.layout.progress_splash)

@@ -20,7 +20,7 @@ public class UserDTO implements Parcelable {
     private List<String> mRepositories;
 
 
-    private UserDTO(UserData userData) {
+    public UserDTO(UserData userData) {
         List<String> repoLink = new ArrayList<>();
 
         mPhoto = userData.getPublicInfo().getPhoto();

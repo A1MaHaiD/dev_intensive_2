@@ -32,10 +32,13 @@
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2351851851851852" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/activity_auth.xml" value="0.24003623188405798" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/activity_profile_user.xml" value="0.16077898550724637" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/activity_user_list.xml" value="0.19972826086956522" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/drawer_header.xml" value="0.19972826086956522" />
+        <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/item_repositories_list.xml" value="0.2" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/item_user_list.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/progress_splash.xml" value="0.20923913043478262" />
+        <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/static_profile_content.xml" value="0.16077898550724637" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/user_layout_content.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/super/AndroidStudioProjects/dev_intensive_2/app/src/main/res/layout/user_list_content.xml" value="0.20923913043478262" />
       </map>

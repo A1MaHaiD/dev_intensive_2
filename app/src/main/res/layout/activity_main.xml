@@ -148,7 +148,7 @@
 
         </LinearLayout>
 
-        <include layout="@layout/user_layout_content" />
+        <include layout="@layout/user_profile_content" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -1,5 +1,6 @@
 package com.softdesign.devintensive2.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import com.softdesign.devintensive2.R2.id.position
 import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.data.network.res.UserData
 import com.softdesign.devintensive2.data.network.res.UserListRes
+import com.softdesign.devintensive2.data.storage.models.UserDTO
 import com.softdesign.devintensive2.databinding.ActivityUserListBinding
 import com.softdesign.devintensive2.ui.adapters.UserAdapter
 import com.softdesign.devintensive2.ui.adapters.ViewHolders.UserVH
@@ -23,6 +25,7 @@ import com.softdesign.devintensive2.utils.ConstantManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.FieldPosition
 
 class UserListActivity : AppCompatActivity() {
 
@@ -36,6 +39,7 @@ class UserListActivity : AppCompatActivity() {
     private var mDataManager: DataManager? = null
     private var mUserAdapter: UserAdapter? = null
     private var mUsers: List<UserData>? = null
+//    private var mUserDTO:UserDTO? = null
 
     lateinit var binding: ActivityUserListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,20 +94,27 @@ class UserListActivity : AppCompatActivity() {
             override fun onResponse(call: Call<UserListRes>, response: Response<UserListRes>) {
                 try {
                     mUsers = response.body()?.data
-                    mUserAdapter = UserAdapter(mUsers, UserVH.CustomClickListener{
-                        showSnackbar("Користувач з індеком "+ position)
+                    mUserAdapter = UserAdapter(mUsers, object : UserVH.CustomClickListener{
+                        override fun onUserItemClickListener(position: Int) {
+//                            showSnackbar("Користувач з індексом $position")
+                            val mUserDTO = UserDTO(mUsers!![position])
 
-                        //TODO: По відкриттю кліком відкрити нове Activity та передати на нього данні користувача
-                    }
+                            val profileIntent: Intent =
+                                Intent(this@UserListActivity, ProfileUserActivity::class.java)
+                            profileIntent.putExtra(ConstantManager.PARCELABLE_KEY ,mUserDTO)
 
+                            startActivity(profileIntent)
 
+                            //TODO: По відкриттю кліком відкрити нове Activity та передати на нього данні користувача
+                        }
 
-                    )
+                    })
                     mRecyclerView?.adapter = mUserAdapter
                 } catch (e: NullPointerException) {
                     Log.e(TAG, e.toString())
                     showSnackbar("Щось пішло не по плану")
                 }
+
             }
 
             override fun onFailure(call: Call<UserListRes>, t: Throwable) {

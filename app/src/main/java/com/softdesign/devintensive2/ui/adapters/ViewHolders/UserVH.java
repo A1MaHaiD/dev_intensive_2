@@ -46,6 +46,6 @@ public class UserVH extends RecyclerView.ViewHolder implements View.OnClickListe
 
     public interface CustomClickListener{
 
-        void onUserItemClickListener();
+        void onUserItemClickListener(int position);
     }
 }

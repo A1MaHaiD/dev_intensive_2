@@ -35,7 +35,8 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_profile_user"
-                style="@style/Theme.DevIntensive2.PopupOverlay"
+                app:theme="@style/ToolBarStyle"
+                app:popupTheme="@style/Theme.DevIntensive2.PopupOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/behavior_min_height"
                 app:layout_collapseMode="pin" />

@@ -1,26 +1,42 @@
 package com.softdesign.devintensive2.ui.adapters
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
+import com.softdesign.devintensive2.R
 
-class RepositoriesAdapter:BaseAdapter() {
-
-    var mRepositoriesList:List<String>? = null
+class RepositoriesAdapter(
+    private var mContext: Context?,
+    private var mRepoList: List<String>?,
+    private var mInflater: LayoutInflater = mContext?.getSystemService(
+        Context.LAYOUT_INFLATER_SERVICE
+    ) as LayoutInflater
+) : BaseAdapter() {
 
     override fun getCount(): Int {
-        return mRepositoriesList!!.size
+        return mRepoList!!.size
     }
 
     override fun getItem(position: Int): Any {
-        TODO("Not yet implemented")
+        return mRepoList!![position]
     }
 
     override fun getItemId(position: Int): Long {
-        TODO("Not yet implemented")
+        return position.toLong()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        TODO("Not yet implemented")
+        var itemView: View? = convertView
+
+        if (itemView == null) {
+            itemView = mInflater.inflate(R.layout.item_repositories_list, parent, false)
+        }
+
+        var repoName: TextView = itemView?.findViewById(R.id.et_github) as TextView
+        repoName.text = mRepoList!![position]
+        return itemView
     }
 }

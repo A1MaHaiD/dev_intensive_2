@@ -1,8 +1,11 @@
 plugins {
+
     id 'com.android.application'
     id 'kotlin-android'
     //@ButterKnife
     id 'com.jakewharton.butterknife'
+    //@GreenDAO
+    id 'org.greenrobot.greendao'
 }
 
 android {
@@ -51,6 +54,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     //@Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso.OkHttp3Downloader:2.71828'
     //@Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -60,6 +64,11 @@ dependencies {
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
     //@Okio
     implementation 'com.squareup.okio:okio:3.0.0-alpha.9'
+    //@GreenDAO
+    implementation 'org.greenrobot:greendao:3.3.0'
+    //@Stetho from Facebook
+    implementation 'com.facebook.stetho:stetho:1.6.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
 
 
     testImplementation 'junit:junit:4.13.2'

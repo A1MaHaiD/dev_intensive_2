@@ -2,6 +2,7 @@ package com.softdesign.devintensive2.ui.activities
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.ListView
@@ -21,8 +22,9 @@ class ProfileUserActivity : BaseActivity() {
 
     private var mUserAbout: EditText? = null
     private var mCollapsingToolbarLayout: CollapsingToolbarLayout? = null
-    private var mCoordinatorLayout:CoordinatorLayout? = null
+    private var mCoordinatorLayout: CoordinatorLayout? = null
     private var mRepoListView: ListView? = null
+    private var mRepositoriesAdapter: RepositoriesAdapter? = null
 
     lateinit var binding: ActivityProfileUserBinding
 
@@ -57,20 +59,23 @@ class ProfileUserActivity : BaseActivity() {
         val userDTO: UserDTO? = intent.getParcelableExtra(ConstantManager.PARCELABLE_KEY)
 
         val repositories: MutableList<String>? = userDTO?.repositories
-        val repositoriesAdapter = RepositoriesAdapter(this, repositories)
-        mRepoListView?.adapter = repositoriesAdapter
+        mRepositoriesAdapter = RepositoriesAdapter(this, repositories)
+        mRepoListView?.adapter = mRepositoriesAdapter
 
-        mRepoListView?.onItemClickListener = object :AdapterView.OnItemClickListener{
+        mRepoListView?.onItemClickListener = object : AdapterView.OnItemClickListener {
             override fun onItemClick(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
+
             ) {
-//                Snackbar.make(mCollapsingToolbarLayout!!,
-//                    "Репозиторій ${repositories!![position]}",
-//                    Snackbar.LENGTH_LONG)
-//                    .show()
+                Snackbar.make(
+                    mCollapsingToolbarLayout!!,
+                    "Репозиторій ${repositories!![position]}",
+                    Snackbar.LENGTH_LONG
+                )
+                    .show()
                 //TODO: Реалізувати через Intent.ACTION_VIEW перегляд Репозиторія
             }
 
@@ -87,5 +92,29 @@ class ProfileUserActivity : BaseActivity() {
             .placeholder(R.drawable.user_photo)
             .error(R.drawable.user_photo)
             .into(binding.ivUserPhotoProfile)
+    }
+
+    private fun setListViewHeightBasedOnChildren(listView: ListView) {
+        if (mRepositoriesAdapter == null) {
+            return
+        }
+        val desireWidth: Int = View.MeasureSpec.makeMeasureSpec(
+            listView.width,
+            View.MeasureSpec.UNSPECIFIED
+        )
+        var totalHeight = 0
+        var view: View? = null
+        for (i in 0 until mRepositoriesAdapter!!.count) {
+            view = mRepositoriesAdapter!!.getView(i, view, listView)
+            if (i == 0) view.layoutParams = ViewGroup.LayoutParams(
+                desireWidth,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            view.measure(desireWidth, View.MeasureSpec.UNSPECIFIED)
+            totalHeight += view.measuredHeight
+        }
+        val params = listView.layoutParams
+        params.height = totalHeight + listView.dividerHeight * (mRepositoriesAdapter!!.count -1)
+        listView.layoutParams = params
     }
 }

@@ -9,9 +9,9 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout_main"
-        android:background="@color/purple_500"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/purple_500"
         android:theme="@style/Theme.DevIntensive2.AppBarOverlay">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -37,8 +37,10 @@
                         android:id="@+id/iv_user_photo"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/profile_image_size_256"
+                        android:fitsSystemWindows="true"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/user_photo" />
+                        android:src="@drawable/user_photo"
+                        android:visibility="visible" />
 
                     <RelativeLayout
                         android:id="@+id/rl_profile_placeholder"

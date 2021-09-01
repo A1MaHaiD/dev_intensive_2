@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout_profile_user"
@@ -14,7 +15,8 @@
         style="@style/Theme.DevIntensive2.AppBarOverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500">
+        android:background="@color/purple_500"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/ctl_profile_user"
@@ -23,47 +25,13 @@
             app:contentScrim="@color/purple_500"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <FrameLayout
+            <ImageView
+                android:id="@+id/iv_user_photo_profile"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/profile_image_size_256"
-                android:fitsSystemWindows="true">
-
-                <ImageView
-                    android:id="@+id/iv_user_photo"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/profile_image_size_256"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/user_photo" />
-
-                <RelativeLayout
-                    android:id="@+id/rl_profile_placeholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_background"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/iv_photo_placeholder"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="@dimen/spacing_small_8"
-                        android:fontFamily="@string/ff_medium"
-                        android:text="@string/user_profile_dialog_title"
-                        android:textColor="@color/white" />
-
-                    <ImageView
-                        android:id="@+id/iv_photo_placeholder"
-                        android:layout_width="@dimen/placeholder_photo_size_90"
-                        android:layout_height="@dimen/placeholder_photo_size_90"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="@dimen/spacing_large_56"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/user_placeholder_24" />
-                </RelativeLayout>
-
-            </FrameLayout>
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_photo" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_profile_user"
@@ -77,7 +45,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/ll_user_info_wrapper"
+        android:id="@+id/ll_user_info_wrapper_profile"
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacing_big_larger_112"
         android:background="@color/purple_500"
@@ -91,12 +59,12 @@
             android:layout_weight="0.25">
 
             <TextView
-                android:id="@+id/tv_user_info_rate"
+                android:id="@+id/tv_user_info_rate_profile"
                 style="@style/user_info_value"
                 android:text="@string/profile_user_info_rate_dummy" />
 
             <TextView
-                android:id="@+id/tv_rate_hint"
+                android:id="@+id/tv_rate_hint_profile"
                 style="@style/user_info_hint"
                 android:text="@string/profile_user_info_rate_hint" />
         </LinearLayout>
@@ -111,12 +79,12 @@
             android:layout_weight="0.5">
 
             <TextView
-                android:id="@+id/tv_user_info_code_line"
+                android:id="@+id/tv_user_info_code_line_profile"
                 style="@style/user_info_value"
                 android:text="@string/profile_user_info_code_line_dummy" />
 
             <TextView
-                android:id="@+id/tv_code_line_hint"
+                android:id="@+id/tv_code_line_hint_profile"
                 style="@style/user_info_hint"
                 android:text="@string/profile_user_info_code_line_hint" />
         </LinearLayout>
@@ -131,12 +99,12 @@
             android:layout_weight="0.25">
 
             <TextView
-                android:id="@+id/tv_user_info_project"
+                android:id="@+id/tv_user_info_project_profile"
                 style="@style/user_info_value"
                 android:text="@string/profile_user_info_project_dummy" />
 
             <TextView
-                android:id="@+id/tv_project_hint"
+                android:id="@+id/tv_project_hint_profile"
                 style="@style/user_info_hint"
                 android:text="@string/profile_user_info_project_hint" />
         </LinearLayout>

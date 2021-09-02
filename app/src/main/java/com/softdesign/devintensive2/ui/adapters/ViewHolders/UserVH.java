@@ -1,5 +1,6 @@
 package com.softdesign.devintensive2.ui.adapters.ViewHolders;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class UserVH extends RecyclerView.ViewHolder implements View.OnClickListe
     public AspectRatioImageView userPhoto;
     public TextView mFullName, mRating, mCodeLine, mProjects, mAbout;
     protected Button mShowMore;
+    public Drawable mDummy;
 
     private CustomClickListener mListener;
     private Object CustomClickListener;
@@ -32,6 +34,7 @@ public class UserVH extends RecyclerView.ViewHolder implements View.OnClickListe
         mAbout = itemView.findViewById(R.id.tv_about);
         mShowMore = itemView.findViewById(R.id.b_more_info);
 
+        mDummy = userPhoto.getContext().getResources().getDrawable(R.drawable.user_photo);
         mShowMore.setOnClickListener(this);
     }
 

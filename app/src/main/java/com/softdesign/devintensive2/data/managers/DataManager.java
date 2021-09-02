@@ -2,17 +2,23 @@ package com.softdesign.devintensive2.data.managers;
 
 import android.content.Context;
 
+import com.softdesign.devintensive2.data.network.PicassoCache;
 import com.softdesign.devintensive2.data.network.RestService;
 import com.softdesign.devintensive2.data.network.ServiceGenerator;
 import com.softdesign.devintensive2.data.network.req.UserLoginReq;
+import com.softdesign.devintensive2.data.network.res.UploadPhotoRes;
 import com.softdesign.devintensive2.data.network.res.UserListRes;
 import com.softdesign.devintensive2.data.network.res.UserModelRes;
 import com.softdesign.devintensive2.utils.DevIntensive2Application;
+import com.squareup.picasso.Picasso;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 
 public class DataManager {
     private static DataManager INSTANCE = null;
+    private Picasso mPicasso;
 
     private Context mContext;
     private PreferencesManager mPreferencesManager;
@@ -23,6 +29,7 @@ public class DataManager {
         this.mPreferencesManager = new PreferencesManager();
         this.mContext = DevIntensive2Application.getContext();
         this.mRestService = ServiceGenerator.createService(RestService.class);
+        this.mPicasso = new PicassoCache(mContext).getPicassoInstance();
     }
 
     public static DataManager getInstance() {
@@ -40,6 +47,11 @@ public class DataManager {
         return mContext;
     }
 
+    public Picasso getPicasso() {
+        return mPicasso;
+    }
+
+
     //Region ===============  Network  ==========================
 
     public Call<UserModelRes> loginUser(
@@ -49,6 +61,10 @@ public class DataManager {
         return mRestService.loginUser(
 //                lastModified,
                 userLoginReq);
+    }
+
+    public Call<UploadPhotoRes> uploadPhoto (String userId, MultipartBody.Part photoFile){
+        return mRestService.uploadPhoto(userId,photoFile);
     }
 
     public Call<UserListRes> getUserList(){

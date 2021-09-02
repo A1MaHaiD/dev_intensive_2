@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,19 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
-import com.softdesign.devintensive2.R2.id.position
 import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.data.network.res.UserData
 import com.softdesign.devintensive2.data.network.res.UserListRes
 import com.softdesign.devintensive2.data.storage.models.UserDTO
 import com.softdesign.devintensive2.databinding.ActivityUserListBinding
-import com.softdesign.devintensive2.ui.adapters.UserAdapter
+import com.softdesign.devintensive2.ui.adapters.UsersAdapter
 import com.softdesign.devintensive2.ui.adapters.ViewHolders.UserVH
 import com.softdesign.devintensive2.utils.ConstantManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.FieldPosition
 
 class UserListActivity : AppCompatActivity() {
 
@@ -37,7 +34,7 @@ class UserListActivity : AppCompatActivity() {
     private var mRecyclerView: RecyclerView? = null
 
     private var mDataManager: DataManager? = null
-    private var mUserAdapter: UserAdapter? = null
+    private var mUsersAdapter: UsersAdapter? = null
     private var mUsers: List<UserData>? = null
 //    private var mUserDTO:UserDTO? = null
 
@@ -94,7 +91,7 @@ class UserListActivity : AppCompatActivity() {
             override fun onResponse(call: Call<UserListRes>, response: Response<UserListRes>) {
                 try {
                     mUsers = response.body()?.data
-                    mUserAdapter = UserAdapter(mUsers, object : UserVH.CustomClickListener{
+                    mUsersAdapter = UsersAdapter(mUsers, object : UserVH.CustomClickListener{
                         override fun onUserItemClickListener(position: Int) {
 //                            showSnackbar("Користувач з індексом $position")
                             val mUserDTO = UserDTO(mUsers!![position])
@@ -109,7 +106,7 @@ class UserListActivity : AppCompatActivity() {
                         }
 
                     })
-                    mRecyclerView?.adapter = mUserAdapter
+                    mRecyclerView?.adapter = mUsersAdapter
                 } catch (e: NullPointerException) {
                     Log.e(TAG, e.toString())
                     showSnackbar("Щось пішло не по плану")

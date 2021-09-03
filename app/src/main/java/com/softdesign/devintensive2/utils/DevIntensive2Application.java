@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 public class DevIntensive2Application extends Application {
 
+    private static Context sContext;
     public static SharedPreferences sSharedPreferences;
 
     @Override
@@ -19,7 +20,7 @@ public class DevIntensive2Application extends Application {
         return sSharedPreferences;
     }
     public static Context getContext() {
-        return (Context) sSharedPreferences;
+        return sContext;
     }
 
 }

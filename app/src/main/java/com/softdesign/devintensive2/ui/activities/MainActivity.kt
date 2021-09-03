@@ -30,7 +30,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.databinding.ActivityMainBinding
-import com.softdesign.devintensive2.databinding.UserLayoutContentBinding
+import com.softdesign.devintensive2.databinding.UserProfileContentBinding
 import com.softdesign.devintensive2.utils.ConstantManager
 import com.squareup.picasso.Picasso
 import java.io.File
@@ -45,7 +45,7 @@ class MainActivity : BaseActivity() {
 
     private lateinit var mDataManager: DataManager
     private lateinit var binding: ActivityMainBinding
-    private lateinit var bindingChild: UserLayoutContentBinding
+    private lateinit var bindingChild: UserProfileContentBinding
     private lateinit var mUserInfoViews: MutableList<EditText>
     private lateinit var mUserValueViews: MutableList<TextView>
     private var mCurrentEditMode: Int = 0
@@ -57,7 +57,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        bindingChild = UserLayoutContentBinding.inflate(layoutInflater)
+        bindingChild = UserProfileContentBinding.inflate(layoutInflater)
         val viewChild = bindingChild.root
         setContentView(viewChild)
         val view = binding.root

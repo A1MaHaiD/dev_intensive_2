@@ -85,7 +85,7 @@ class UserListActivity : AppCompatActivity() {
     }
 
     private fun loadUsers() {
-        val call: Call<UserListRes> = mDataManager!!.userList
+        val call: Call<UserListRes> = mDataManager!!.userListFromNetwork
 
         call.enqueue(object : Callback<UserListRes> {
             override fun onResponse(call: Call<UserListRes>, response: Response<UserListRes>) {

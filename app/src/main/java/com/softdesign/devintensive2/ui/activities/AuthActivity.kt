@@ -128,4 +128,8 @@ class AuthActivity : BaseActivity(), View.OnClickListener {
         )
         mDataManager!!.preferencesManagers.saveUserProfileValues(userValues)
     }
+
+    private fun saveUserInDb(){
+
+    }
 }

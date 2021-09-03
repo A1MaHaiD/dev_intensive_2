@@ -9,8 +9,13 @@ import com.softdesign.devintensive2.data.network.req.UserLoginReq;
 import com.softdesign.devintensive2.data.network.res.UploadPhotoRes;
 import com.softdesign.devintensive2.data.network.res.UserListRes;
 import com.softdesign.devintensive2.data.network.res.UserModelRes;
+import com.softdesign.devintensive2.data.storage.models.DaoSession;
+import com.softdesign.devintensive2.data.storage.models.User;
 import com.softdesign.devintensive2.utils.DevIntensive2Application;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -24,12 +29,15 @@ public class DataManager {
     private PreferencesManager mPreferencesManager;
     private RestService mRestService;
 
+    private DaoSession mDaoSession;
+
 
     public DataManager() {
         this.mPreferencesManager = new PreferencesManager();
         this.mContext = DevIntensive2Application.getContext();
         this.mRestService = ServiceGenerator.createService(RestService.class);
         this.mPicasso = new PicassoCache(mContext).getPicassoInstance();
+        this.mDaoSession = DevIntensive2Application.getsDaoSession();
     }
 
     public static DataManager getInstance() {
@@ -67,7 +75,7 @@ public class DataManager {
         return mRestService.uploadPhoto(userId,photoFile);
     }
 
-    public Call<UserListRes> getUserList(){
+    public Call<UserListRes> getUserListFromNetwork(){
         return mRestService.getUserList();
 
     }
@@ -76,9 +84,10 @@ public class DataManager {
 
     //Region ===============  Data  ==========================
 
-//    public Call<UserModelRes> login(UserLoginReq userLoginReq){
-//        return mRestService.loginUser(userLoginReq);
-//    }
+    public List<User> getUserListFromDb(){
+        List<User> temp = new ArrayList<>();
+        return temp;
+    }
 
     //Endregion  ================================================
 }

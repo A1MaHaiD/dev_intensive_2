@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.data.network.res.UserData
+import com.softdesign.devintensive2.data.storage.models.User
 import com.softdesign.devintensive2.ui.adapters.ViewHolders.UserVH
 import com.softdesign.devintensive2.utils.ConstantManager
 import com.squareup.picasso.Callback
 import com.squareup.picasso.NetworkPolicy
-import com.squareup.picasso.Picasso
 import java.lang.Exception
 
 class UsersAdapter(
@@ -24,8 +24,6 @@ class UsersAdapter(
 ) : RecyclerView.Adapter<UserVH>() {
 
     private val TAG: String = ConstantManager.TAG_PREFIX + " UsersAdapter"
-
-
 
     lateinit var mContext: Context
 
@@ -41,14 +39,14 @@ class UsersAdapter(
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: UserVH, position: Int) {
-        val user: UserData = mUser!![position]
+        val user: User = mUser!![position]
         val userPhoto: String
-        if (user.publicInfo.photo.isEmpty()) {
+        if (user.photo.isEmpty()) {
             userPhoto = "null"
             Log.e(TAG,"onBindViewHolder: user with name" +
-                    " ${user.getFullName()} has empty name")
+                    " ${user.fullName} has empty name")
         } else{
-            userPhoto = user.publicInfo.photo
+            userPhoto = user.photo
         }
 
         DataManager.getInstance().picasso
@@ -84,16 +82,16 @@ class UsersAdapter(
 
             })
 
-        holder.mFullName.text = user.getFullName()
-        holder.mRating.text = user.profileValues.rait.toString()
-        holder.mCodeLine.text = user.profileValues.linesCode.toString()
-        holder.mProjects.text = user.profileValues.projects.toString()
+        holder.mFullName.text = user.fullName
+        holder.mRating.text = user.rating.toString()
+        holder.mCodeLine.text = user.codeLines.toString()
+        holder.mProjects.text = user.projects.toString()
 
-        if (user.publicInfo.bio.isEmpty()) {
+        if (user.bio.isEmpty()) {
             holder.mAbout.visibility = View.GONE
         } else {
             holder.mAbout.visibility = View.VISIBLE
-            holder.mAbout.text = user.publicInfo.bio
+            holder.mAbout.text = user.bio
         }
     }
 

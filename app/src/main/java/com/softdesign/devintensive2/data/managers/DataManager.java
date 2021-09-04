@@ -11,8 +11,11 @@ import com.softdesign.devintensive2.data.network.res.UserListRes;
 import com.softdesign.devintensive2.data.network.res.UserModelRes;
 import com.softdesign.devintensive2.data.storage.models.DaoSession;
 import com.softdesign.devintensive2.data.storage.models.User;
+import com.softdesign.devintensive2.data.storage.models.UserDao;
 import com.softdesign.devintensive2.utils.DevIntensive2Application;
 import com.squareup.picasso.Picasso;
+
+import org.greenrobot.greendao.Property;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,22 +74,41 @@ public class DataManager {
                 userLoginReq);
     }
 
-    public Call<UploadPhotoRes> uploadPhoto (String userId, MultipartBody.Part photoFile){
-        return mRestService.uploadPhoto(userId,photoFile);
+    public Call<UploadPhotoRes> uploadPhoto(String userId, MultipartBody.Part photoFile) {
+        return mRestService.uploadPhoto(userId, photoFile);
     }
 
-    public Call<UserListRes> getUserListFromNetwork(){
+    public Call<UserListRes> getUserListFromNetwork() {
         return mRestService.getUserList();
 
     }
 
     //Endregion  ================================================
 
-    //Region ===============  Data  ==========================
+    //Region ===============  Database  ==========================
 
-    public List<User> getUserListFromDb(){
-        List<User> temp = new ArrayList<>();
-        return temp;
+
+    public DaoSession getDaoSession() {
+        return mDaoSession;
+    }
+
+    public List<User> getUserListFromDb() {
+        List<User> userList = new ArrayList<>();
+
+        try {
+            userList = mDaoSession.queryBuilder(User.class)
+                    .where(Properties.CodeLines.gt(0))
+                    .orderDesc(Properties.CodeLines)
+                    .build()
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    private static class Properties {
+        public static Property CodeLines;
     }
 
     //Endregion  ================================================

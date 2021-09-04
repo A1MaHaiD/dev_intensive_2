@@ -3,7 +3,6 @@ package com.softdesign.devintensive2.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
@@ -14,15 +13,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.softdesign.devintensive2.R
 import com.softdesign.devintensive2.data.managers.DataManager
 import com.softdesign.devintensive2.data.network.res.UserData
-import com.softdesign.devintensive2.data.network.res.UserListRes
 import com.softdesign.devintensive2.data.storage.models.UserDTO
 import com.softdesign.devintensive2.databinding.ActivityUserListBinding
 import com.softdesign.devintensive2.ui.adapters.UsersAdapter
 import com.softdesign.devintensive2.ui.adapters.ViewHolders.UserVH
 import com.softdesign.devintensive2.utils.ConstantManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class UserListActivity : AppCompatActivity() {
 
@@ -56,7 +51,7 @@ class UserListActivity : AppCompatActivity() {
 
         setupToolbar()
         setupDrawer()
-        loadUsers()
+        loadUsersFromDb()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -84,40 +79,52 @@ class UserListActivity : AppCompatActivity() {
         // TODO: Ралізувати перехід в іншу актівіті при кліку по елементі меню в NavigationDrawer
     }
 
-    private fun loadUsers() {
-        val call: Call<UserListRes> = mDataManager!!.userListFromNetwork
+    private fun loadUsersFromDb() {
 
-        call.enqueue(object : Callback<UserListRes> {
-            override fun onResponse(call: Call<UserListRes>, response: Response<UserListRes>) {
-                try {
-                    mUsers = response.body()?.data
-                    mUsersAdapter = UsersAdapter(mUsers, object : UserVH.CustomClickListener{
-                        override fun onUserItemClickListener(position: Int) {
+        mUsers = mDataManager?.userListFromDb()
+
+        if (mUsers?.size == 0){
+            showSnackbar("Список користувачів не може бути завантажений")
+        } else {
+            mUsersAdapter = UsersAdapter(mUsers, object : UserVH.CustomClickListener{
+                override fun onUserItemClickListener(position: Int) {
 //                            showSnackbar("Користувач з індексом $position")
-                            val mUserDTO = UserDTO(mUsers!![position])
+                    val mUserDTO = UserDTO(mUsers!![position])
 
-                            val profileIntent: Intent =
-                                Intent(this@UserListActivity, ProfileUserActivity::class.java)
-                            profileIntent.putExtra(ConstantManager.PARCELABLE_KEY ,mUserDTO)
+                    val profileIntent: Intent =
+                        Intent(this@UserListActivity, ProfileUserActivity::class.java)
+                    profileIntent.putExtra(ConstantManager.PARCELABLE_KEY ,mUserDTO)
 
-                            startActivity(profileIntent)
+                    startActivity(profileIntent)
 
-                            //TODO: По відкриттю кліком відкрити нове Activity та передати на нього данні користувача
-                        }
-
-                    })
-                    mRecyclerView?.adapter = mUsersAdapter
-                } catch (e: NullPointerException) {
-                    Log.e(TAG, e.toString())
-                    showSnackbar("Щось пішло не по плану")
                 }
 
-            }
-
-            override fun onFailure(call: Call<UserListRes>, t: Throwable) {
-                //TODO: Обробити помилки
-            }
-
-        })
+            })
+            mRecyclerView?.adapter = mUsersAdapter
+        }
+//        val call: Call<UserListRes> = mDataManager!!.userListFromNetwork
+//
+//        call.enqueue(object : Callback<UserListRes> {
+//            override fun onResponse(call: Call<UserListRes>, response: Response<UserListRes>) {
+//                try {
+//                    mUsers = response.body()?.data
+//
+//                    mRecyclerView?.adapter = mUsersAdapter
+//                } catch (e: NullPointerException) {
+//                    Log.e(TAG, e.toString())
+//                    showSnackbar("Щось пішло не по плану")
+//                }
+//
+//            }
+//
+//            override fun onFailure(call: Call<UserListRes>, t: Throwable) {
+//                //TODO: Обробити помилки
+//            }
+//
+//        })
     }
+}
+
+private operator fun <E> MutableList<E>.invoke(): List<UserData>? {
+        TODO("Not yet implemented")
 }

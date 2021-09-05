@@ -25,4 +25,5 @@ public interface ConstantManager {
     int REQUEST_GALLERY_PICTURE = 98;
     int PERMISSION_REQUEST_SETTINGS_CODE = 97;
     int CAMERA_REQUEST_PERMISSION_CODE = 98;
+    int SEARCH_DELAY = 3000;
 }

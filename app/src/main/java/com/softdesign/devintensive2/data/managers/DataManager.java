@@ -19,6 +19,7 @@ import org.greenrobot.greendao.Property;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -107,9 +108,27 @@ public class DataManager {
         return userList;
     }
 
-    private static class Properties {
+    public static class Properties {
         public static Property CodeLines;
+        public static Property Rating;
+        public static Property SearchName;
     }
+
+    public List<User> getUserListByName(String query) {
+
+        List<User> userList = new ArrayList<>();
+        try {
+            userList = mDaoSession.queryBuilder(User.class)
+                    .where(Properties.Rating.gt(0), UserDao.Properties.SearchName.like("%" + query.toUpperCase() + "%"))
+                    .orderDesc(UserDao.Properties.CodeLines)
+                    .build()
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
 
     //Endregion  ================================================
 }

@@ -11,4 +11,11 @@
     <dimen name="size_small_12">12sp</dimen>
     <dimen name="big_large_size_96">96dp</dimen>
     <dimen name="size_normal_16">16sp</dimen>
+    <dimen name="spacing_large_112">112dp</dimen>
+    <dimen name="size_medium_56">56dp</dimen>
+    <dimen name="spacing_action_bar_80">80dp</dimen>
+    <dimen name="profile_image_size_256">256dp</dimen>
+    <dimen name="fab_right_spice_16">16dp</dimen>
+    <dimen name="placeholder_photo_size_90">90dp</dimen>
+    <dimen name="spacing_large_56">56dp</dimen>
 </resources>
